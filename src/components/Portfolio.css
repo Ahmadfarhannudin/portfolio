@@ -157,8 +157,17 @@
   margin-top: 40px;
 }
 
+.portfolio-wishlist-gap .wishlist-section {
+  padding-top: 40px;
+  min-height: auto;
+}
+
 @media (max-width: 768px) {
   .portfolio-wishlist-gap {
-    margin-top: 8px;
+    margin-top: 0;
+  }
+  .portfolio-wishlist-gap .wishlist-section {
+    padding-top: 20px;
+    padding-bottom: 60px;
   }
 }
