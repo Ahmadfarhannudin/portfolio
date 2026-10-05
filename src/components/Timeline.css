@@ -538,6 +538,20 @@
    TABLET
 ========================================================= */
 
+@media (pointer: coarse) {
+  .timeline-card {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .timeline-card:hover {
+    transform: none;
+  }
+
+  .timeline-marker::before {
+    display: none;
+  }
+}
+
 @media (max-width: 900px) {
 
   .timeline-wrapper {

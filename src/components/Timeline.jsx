@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useIsCoarsePointer } from "../hooks/useMediaQuery";
 
 import {
   motion,
@@ -70,6 +71,7 @@ const timelineData = [
 
 export default function Timeline() {
   const containerRef = useRef(null);
+  const isCoarsePointer = useIsCoarsePointer();
 
   /* =======================================================
      SCROLL PROGRESS
@@ -90,9 +92,9 @@ export default function Timeline() {
   const smoothProgress = useSpring(
     scrollYProgress,
     {
-      stiffness: 60,
-      damping: 20,
-      mass: 0.6,
+      stiffness: isCoarsePointer ? 40 : 60,
+      damping: isCoarsePointer ? 25 : 20,
+      mass: 0.5,
       restDelta: 0.001,
     }
   );
@@ -225,7 +227,7 @@ export default function Timeline() {
 
                 scale: 0.96,
 
-                filter: "blur(10px)",
+                filter: isCoarsePointer ? "blur(0px)" : "blur(10px)",
               }}
 
               whileInView={{
@@ -243,8 +245,8 @@ export default function Timeline() {
               }}
 
               transition={{
-                duration: 0.9,
-                delay: index * 0.16,
+                duration: isCoarsePointer ? 0.65 : 0.9,
+                delay: index * 0.12,
                 ease,
               }}
             >
