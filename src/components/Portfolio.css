@@ -151,3 +151,14 @@
     }
   }
 }
+
+/* Gap gallery -> wishlist: rapat, tanpa jarak kosong */
+.portfolio-wishlist-gap {
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .portfolio-wishlist-gap {
+    margin-top: 8px;
+  }
+}

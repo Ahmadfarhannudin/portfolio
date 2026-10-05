@@ -464,7 +464,7 @@ export default function Portfolio({
         ================================================= */}
 
         <SlideIn from="left" amount={0.1}>
-          <div className="wishlist-section-wrapper" style={{ marginTop: '40px' }}>
+          <div className="wishlist-section-wrapper portfolio-wishlist-gap">
             <Wishlist />
           </div>
         </SlideIn>
