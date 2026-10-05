@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "./motion";
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { BadgeCheck, ChevronDown, ChevronUp, MessageCircle, Reply, Send } from 'lucide-react';
 import TerminalContact from './TerminalContact';

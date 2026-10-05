@@ -5,10 +5,7 @@ import {
   Suspense,
 } from "react";
 
-import {
-  motion,
-  useReducedMotion,
-} from "framer-motion";
+import { motion, useReducedMotion,  } from "./motion";
 
 import BubbleMenu from "./BubbleMenu";
 import PortfolioContent from "./PortfolioContent";

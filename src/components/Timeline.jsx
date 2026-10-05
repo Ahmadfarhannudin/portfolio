@@ -1,12 +1,7 @@
 import { useRef } from "react";
 import { useIsCoarsePointer } from "../hooks/useMediaQuery";
 
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-} from "framer-motion";
+import { motion, useScroll, useTransform, useSpring,  } from "./motion";
 
 import {
   GraduationCap,

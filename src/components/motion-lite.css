@@ -1,0 +1,26 @@
+/* =========================================================
+   motion-lite.css — CSS reveal super ringan untuk HP.
+   Hanya opacity + translateY di compositor (GPU).
+   Tanpa blur, tanpa scale, tanpa spring.
+========================================================= */
+
+.lite-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lite-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lite-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

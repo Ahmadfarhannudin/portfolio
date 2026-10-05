@@ -1,10 +1,5 @@
 import { useEffect, useMemo, useRef, useState, lazy, Suspense } from "react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform,  } from "./motion";
 import { MapPin } from "lucide-react";
 
 const Globe3D = lazy(() => import("./ui/3d-globe").then(m => ({ default: m.Globe3D })));

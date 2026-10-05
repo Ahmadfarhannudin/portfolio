@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "./motion";
 import { FolderGit2, Award, Trophy } from "lucide-react";
 import GlareCard from "./GlareCard";
 import "./Stats.css";
