@@ -1,0 +1,1138 @@
+/* =========================================================
+   WISHLIST SECTION
+========================================================= */
+
+.wishlist-section {
+  position: relative;
+
+  width: 100%;
+  min-height: 900px;
+
+  padding: 130px 0 150px;
+
+  background: transparent;
+
+  /*
+   * Jangan gunakan overflow:hidden di section ini.
+   * Globe membutuhkan ruang agar tidak terpotong.
+   */
+  overflow: visible;
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.wishlist-container {
+  position: relative;
+
+  width: min(1380px, calc(100% - 80px));
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.95fr)
+    minmax(480px, 1.05fr);
+
+  align-items: center;
+
+  gap: 25px;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.wishlist-content {
+  position: relative;
+
+  min-width: 0;
+
+  z-index: 10;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.wishlist-eyebrow {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-bottom: 16px;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+}
+
+.wishlist-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.9),
+    0 0 18px rgba(100, 180, 255, 0.7);
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.wishlist-title-wrap {
+  position: relative;
+
+  width: fit-content;
+
+  margin-bottom: 18px;
+}
+
+.wishlist-title {
+  position: relative;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(42px, 5vw, 76px);
+
+  font-weight: 800;
+
+  line-height: 0.95;
+
+  letter-spacing: -0.055em;
+
+  text-shadow:
+    0 0 30px rgba(255, 255, 255, 0.05);
+
+  user-select: none;
+}
+
+.wishlist-title-line {
+  position: absolute;
+
+  left: 0;
+  bottom: -9px;
+
+  width: 100%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0)
+  );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.wishlist-description {
+  max-width: 560px;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: 15px;
+
+  line-height: 1.8;
+
+  letter-spacing: -0.01em;
+}
+
+
+/* =========================================================
+   POLAROID STAGE
+   ---------------------------------------------------------
+   width/height TIDAK di-hardcode di sini lagi. Wishlist.jsx
+   menyuntikkan max-width & height lewat inline style
+   (mengikuti layout.stageWidth / layout.stageHeight per
+   breakpoint), supaya SELALU sinkron dengan posisi (x, y)
+   tiap kartu polaroid — jadi tidak pernah ada foto yang
+   terdorong keluar batas stage.
+========================================================= */
+
+.wishlist-polaroid-stage {
+  position: relative;
+
+  width: 100%;
+
+  margin-top: 55px;
+
+  overflow: visible;
+
+  perspective: 1200px;
+}
+
+
+/* =========================================================
+   POLAROID CARD
+   ---------------------------------------------------------
+   width TIDAK di-hardcode lagi — disuntik dari JS lewat
+   layout.cardWidth per breakpoint (lihat Wishlist.jsx).
+========================================================= */
+
+.wishlist-polaroid {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  padding: 9px 9px 15px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(245, 245, 245, 0.97)
+    );
+
+  border-radius: 2px;
+
+  box-shadow:
+    0 18px 35px rgba(0, 0, 0, 0.38),
+    0 3px 8px rgba(0, 0, 0, 0.2);
+
+  cursor: grab;
+
+  transform-origin: center center;
+
+  will-change: transform;
+
+  user-select: none;
+
+  touch-action: none;
+
+  transition:
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
+}
+
+.wishlist-polaroid:hover {
+  box-shadow:
+    0 24px 45px rgba(0, 0, 0, 0.48),
+    0 5px 12px rgba(0, 0, 0, 0.24);
+
+  filter: brightness(1.02);
+}
+
+.wishlist-polaroid.is-dragging {
+  cursor: grabbing;
+
+  /* Dragging harus tampil di atas kartu lain */
+  z-index: 50;
+
+  box-shadow:
+    0 35px 65px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================================================
+   POLAROID IMAGE
+========================================================= */
+
+.wishlist-polaroid-photo {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 1 / 1.08;
+
+  overflow: hidden;
+
+  background: #ddd;
+}
+
+.wishlist-polaroid-photo img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  pointer-events: none;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+.wishlist-photo-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.14),
+      transparent 45%,
+      rgba(0, 0, 0, 0.08)
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   POLAROID INFORMATION
+========================================================= */
+
+.wishlist-polaroid-info {
+  padding: 10px 5px 0;
+}
+
+.wishlist-polaroid-info h3 {
+  margin: 0 0 5px;
+
+  color: #181818;
+
+  font-size: 15px;
+
+  font-weight: 800;
+
+  line-height: 1.1;
+
+  letter-spacing: -0.02em;
+}
+
+.wishlist-polaroid-location {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  color: #6b6b6b;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.02em;
+}
+
+.wishlist-polaroid-location svg {
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   POLAROID HINT
+   ---------------------------------------------------------
+   Dipindah ke BAWAH stage (bukan overlap di dalamnya) supaya
+   tidak pernah ketiban kartu polaroid di layar sempit.
+========================================================= */
+
+.wishlist-stage-hint {
+  position: absolute;
+
+  left: 50%;
+
+  bottom: -28px;
+
+  transform: translateX(-50%);
+
+  color: rgba(255, 255, 255, 0.3);
+
+  font-size: 10px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.16em;
+
+  line-height: 1.2;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   GLOBE AREA
+========================================================= */
+
+.wishlist-globe-area {
+  position: relative;
+
+  width: 100%;
+
+  /*
+   * Sedikit lebih tinggi agar globe 470px
+   * punya ruang kosong atas/bawah.
+   */
+  height: 560px;
+
+  min-width: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: visible !important;
+
+  background: transparent !important;
+
+  border: none !important;
+
+  outline: none !important;
+
+  box-shadow: none !important;
+
+  z-index: 5;
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   GLOBE
+========================================================= */
+
+.wishlist-globe {
+  position: relative;
+
+  width: 470px;
+
+  height: 470px;
+
+  flex: 0 0 470px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: visible !important;
+
+  background: transparent !important;
+
+  border: none !important;
+
+  outline: none !important;
+
+  box-shadow: none !important;
+
+  border-radius: 0 !important;
+
+  z-index: 5;
+}
+
+
+/* =========================================================
+   GLOBE CONTAINER
+========================================================= */
+
+.wishlist-globe .globe3d-container {
+  position: relative;
+
+  width: 100% !important;
+
+  height: 100% !important;
+
+  min-width: 0 !important;
+
+  min-height: 0 !important;
+
+  overflow: visible !important;
+
+  background: transparent !important;
+
+  border: none !important;
+
+  outline: none !important;
+
+  box-shadow: none !important;
+
+  border-radius: 0 !important;
+}
+
+
+/* =========================================================
+   GLOBE CANVAS
+========================================================= */
+
+.wishlist-globe
+  .globe3d-container
+  canvas {
+  display: block;
+
+  width: 100% !important;
+
+  height: 100% !important;
+
+  min-width: 0 !important;
+
+  min-height: 0 !important;
+
+  overflow: visible !important;
+
+  background: transparent !important;
+
+  border: none !important;
+
+  outline: none !important;
+
+  box-shadow: none !important;
+
+  border-radius: 0 !important;
+}
+
+
+/* =========================================================
+   HARD REMOVE FRAME
+========================================================= */
+
+.wishlist-globe,
+.wishlist-globe::before,
+.wishlist-globe::after,
+
+.wishlist-globe-area,
+.wishlist-globe-area::before,
+.wishlist-globe-area::after,
+
+.wishlist-globe
+  .globe3d-container,
+.wishlist-globe
+  .globe3d-container::before,
+.wishlist-globe
+  .globe3d-container::after {
+  background-color: transparent !important;
+
+  border: 0 !important;
+
+  outline: 0 !important;
+
+  box-shadow: none !important;
+}
+
+
+/* =========================================================
+   GLOBE LABEL
+========================================================= */
+
+.wishlist-globe-label {
+  position: absolute;
+
+  top: 45px;
+
+  right: 70px;
+
+  z-index: 20;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: rgba(255, 255, 255, 0.4);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  pointer-events: none;
+}
+
+.wishlist-globe-label svg {
+  color: #82c8ff;
+
+  filter:
+    drop-shadow(
+      0 0 7px rgba(90, 180, 255, 0.7)
+    );
+}
+
+
+/* =========================================================
+   GLOBE CAPTION
+========================================================= */
+
+.wishlist-globe-caption {
+  position: absolute;
+
+  right: 80px;
+
+  bottom: 42px;
+
+  z-index: 20;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  pointer-events: none;
+}
+
+.wishlist-globe-caption svg {
+  flex-shrink: 0;
+
+  color: rgba(110, 190, 255, 0.8);
+}
+
+
+/* =========================================================
+   TABLET / LARGE LAPTOP
+========================================================= */
+
+@media (max-width: 1150px) {
+  .wishlist-section {
+    padding-top: 110px;
+  }
+
+  .wishlist-container {
+    width: min(
+      calc(100% - 50px),
+      1050px
+    );
+
+    grid-template-columns:
+      minmax(0, 0.95fr)
+      minmax(420px, 1fr);
+
+    gap: 15px;
+  }
+
+  .wishlist-globe-area {
+    height: 520px;
+  }
+
+  .wishlist-globe {
+    width: 430px;
+
+    height: 430px;
+
+    flex-basis: 430px;
+  }
+
+  .wishlist-globe-label {
+    top: 35px;
+
+    right: 25px;
+  }
+
+  .wishlist-globe-caption {
+    right: 30px;
+
+    bottom: 35px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .wishlist-section {
+    padding: 100px 0 120px;
+  }
+
+  .wishlist-container {
+    width: min(
+      calc(100% - 40px),
+      700px
+    );
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+  }
+
+  .wishlist-content {
+    text-align: center;
+  }
+
+  .wishlist-eyebrow,
+  .wishlist-title-wrap {
+    margin-left: auto;
+
+    margin-right: auto;
+  }
+
+  .wishlist-description {
+    margin-left: auto;
+
+    margin-right: auto;
+  }
+
+  .wishlist-polaroid-stage {
+    margin-left: auto;
+
+    margin-right: auto;
+  }
+
+  .wishlist-globe-area {
+    height: 500px;
+
+    margin-top: 5px;
+  }
+
+  .wishlist-globe {
+    width: 430px;
+
+    height: 430px;
+
+    flex-basis: 430px;
+  }
+
+  .wishlist-globe-label {
+    top: 18px;
+
+    right: 50%;
+
+    transform: translateX(50%);
+  }
+
+  .wishlist-globe-caption {
+    right: 50%;
+
+    bottom: 20px;
+
+    transform: translateX(50%);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .wishlist-section {
+    min-height: auto;
+
+    /*
+      Dinaikkan dari sebelumnya (70px) supaya judul
+      "My Wishlist" tidak ketutupan navbar fixed di bagian
+      atas layar.
+    */
+    padding: 130px 0 100px;
+
+    overflow: visible;
+  }
+
+  .wishlist-container {
+    width: calc(100% - 28px);
+
+    display: block;
+  }
+
+  /* -------------------------------------------------------
+     EYEBROW
+  ------------------------------------------------------- */
+
+  .wishlist-eyebrow {
+    margin-bottom: 13px;
+
+    font-size: 9px;
+
+    letter-spacing: 0.14em;
+  }
+
+  /* -------------------------------------------------------
+     TITLE
+  ------------------------------------------------------- */
+
+  .wishlist-title {
+    justify-content: center;
+
+    font-size: clamp(
+      38px,
+      12vw,
+      52px
+    );
+
+    line-height: 1;
+  }
+
+  .wishlist-title-line {
+    bottom: -7px;
+  }
+
+  /* -------------------------------------------------------
+     DESCRIPTION
+  ------------------------------------------------------- */
+
+  .wishlist-description {
+    max-width: 450px;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+  }
+
+  /* -------------------------------------------------------
+     POLAROIDS
+     width/height stage sekarang datang dari inline style
+     (Wishlist.jsx, layout.stageWidth/Height) — di sini
+     cukup atur margin.
+  ------------------------------------------------------- */
+
+  .wishlist-polaroid-stage {
+    margin-top: 40px;
+
+    margin-bottom: 36px;
+  }
+
+  .wishlist-polaroid-info {
+    padding-top: 8px;
+  }
+
+  .wishlist-polaroid-info h3 {
+    margin-bottom: 4px;
+
+    font-size: 12px;
+  }
+
+  .wishlist-polaroid-location {
+    font-size: 8px;
+  }
+
+  .wishlist-stage-hint {
+    font-size: 8px;
+
+    bottom: -24px;
+  }
+
+  /* -------------------------------------------------------
+     GLOBE AREA
+  ------------------------------------------------------- */
+
+  .wishlist-globe-area {
+    width: 100%;
+
+    height: 400px;
+
+    margin-top: 15px;
+  }
+
+  /* -------------------------------------------------------
+     GLOBE
+  ------------------------------------------------------- */
+
+  .wishlist-globe {
+    width: 350px;
+
+    height: 350px;
+
+    flex-basis: 350px;
+
+    max-width: 100%;
+  }
+
+  /* -------------------------------------------------------
+     LABEL
+  ------------------------------------------------------- */
+
+  .wishlist-globe-label {
+    top: 12px;
+
+    right: 50%;
+
+    transform: translateX(50%);
+
+    font-size: 8px;
+
+    letter-spacing: 0.14em;
+  }
+
+  /* -------------------------------------------------------
+     CAPTION
+  ------------------------------------------------------- */
+
+  .wishlist-globe-caption {
+    right: 50%;
+
+    bottom: 8px;
+
+    transform: translateX(50%);
+
+    font-size: 9px;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width: 390px) {
+  .wishlist-section {
+    padding-top: 120px;
+  }
+
+  .wishlist-title {
+    font-size: 38px;
+  }
+
+  .wishlist-description {
+    font-size: 12px;
+  }
+
+  .wishlist-globe-area {
+    height: 370px;
+  }
+
+  .wishlist-globe {
+    width: 320px;
+
+    height: 320px;
+
+    flex-basis: 320px;
+  }
+
+  .wishlist-globe-label {
+    font-size: 7px;
+  }
+
+  .wishlist-globe-caption {
+    font-size: 8px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media (max-width: 340px) {
+  .wishlist-container {
+    width: calc(100% - 20px);
+  }
+
+  .wishlist-globe-area {
+    height: 340px;
+  }
+
+  .wishlist-globe {
+    width: 290px;
+
+    height: 290px;
+
+    flex-basis: 290px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .wishlist-polaroid {
+    transition: none;
+  }
+}
+
+
+/* =========================================================
+   FINAL SAFETY OVERRIDES
+========================================================= */
+
+.wishlist-section,
+.wishlist-container,
+.wishlist-content,
+.wishlist-polaroid-stage,
+.wishlist-globe-area,
+.wishlist-globe {
+  overflow: visible !important;
+}
+
+.wishlist-globe,
+.wishlist-globe-area {
+  background: transparent !important;
+
+  border: none !important;
+
+  outline: none !important;
+
+  box-shadow: none !important;
+}
+
+.wishlist-globe .globe3d-container {
+  overflow: visible !important;
+
+  background: transparent !important;
+
+  border: none !important;
+
+  outline: none !important;
+
+  box-shadow: none !important;
+}
+
+.wishlist-globe .globe3d-container canvas {
+  background: transparent !important;
+
+  border: none !important;
+
+  outline: none !important;
+
+  box-shadow: none !important;
+}
+
+
+/* =========================================================
+   FIX JARAK WISHLIST -> LET'S CONNECT
+========================================================= */
+
+.wishlist-section {
+  min-height: auto !important;
+
+  padding-bottom: 35px !important;
+
+  margin-bottom: 0 !important;
+
+  overflow: visible !important;
+}
+
+
+/* =========================================================
+   CONTAINER WISHLIST
+========================================================= */
+
+.wishlist-container {
+  margin-bottom: 0 !important;
+
+  padding-bottom: 0 !important;
+}
+
+
+/* =========================================================
+   GLOBE AREA
+   Tetap memberi ruang untuk globe,
+   tetapi tidak menambah jarak bawah berlebihan.
+========================================================= */
+
+.wishlist-globe-area {
+  height: 540px !important;
+
+  margin-bottom: 0 !important;
+
+  padding-bottom: 0 !important;
+}
+
+
+/* =========================================================
+   POLAROID AREA
+========================================================= */
+
+.wishlist-polaroid-stage {
+  margin-bottom: 0 !important;
+}
+
+
+/* =========================================================
+   JIKA CONTACT SECTION PUNYA JARAK ATAS BESAR
+========================================================= */
+
+.contact-section {
+  margin-top: 0 !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ---------------------------------------------------------
+   padding-top TIDAK di-!important di sini — biarkan aturan
+   "padding: 130px 0 100px" di blok @media (max-width:600px)
+   di atas yang menentukan jarak atas (supaya navbar tidak
+   menutupi judul). Hanya padding-bottom yang dikunci di sini.
+========================================================= */
+
+@media (max-width: 900px) {
+  .wishlist-globe-area {
+    height: 490px !important;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .wishlist-section {
+    padding-bottom: 20px !important;
+  }
+
+  .wishlist-globe-area {
+    height: 390px !important;
+  }
+}
+
+
+@media (max-width: 390px) {
+  .wishlist-section {
+    padding-bottom: 15px !important;
+  }
+
+  .wishlist-globe-area {
+    height: 360px !important;
+  }
+}

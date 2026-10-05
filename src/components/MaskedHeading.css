@@ -1,0 +1,183 @@
+.masked-heading {
+  position: relative;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+
+  overflow: hidden;
+
+  margin: 0;
+
+  color: #fff;
+
+  perspective: 800px;
+}
+
+
+/* =========================================
+   MASK
+========================================= */
+
+.masked-heading-mask {
+  position: relative;
+
+  display: inline-block;
+
+  overflow: hidden;
+
+  padding-bottom: 0.08em;
+}
+
+
+/* =========================================
+   WORD
+========================================= */
+
+.masked-heading-word {
+  display: inline-block;
+
+  opacity: 0;
+
+  transform:
+    translateY(110%)
+    rotateX(-70deg);
+
+  transform-origin: center bottom;
+
+  filter: blur(8px);
+
+  transition:
+    transform var(--masked-duration) cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    ) var(--masked-delay),
+    opacity var(--masked-duration) ease var(--masked-delay),
+    filter var(--masked-duration) ease var(--masked-delay);
+
+  will-change: transform, opacity, filter;
+}
+
+
+/* =========================================
+   VISIBLE
+========================================= */
+
+.masked-heading-visible .masked-heading-word {
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    rotateX(0deg);
+
+  filter: blur(0);
+}
+
+
+/* =========================================
+   DIRECTION
+========================================= */
+
+.masked-heading.down
+  .masked-heading-word {
+  transform:
+    translateY(-110%)
+    rotateX(70deg);
+}
+
+.masked-heading.down.masked-heading-visible
+  .masked-heading-word {
+  transform:
+    translateY(0)
+    rotateX(0deg);
+}
+
+
+.masked-heading.left
+  .masked-heading-word {
+  transform:
+    translateX(110%)
+    rotateY(30deg);
+}
+
+.masked-heading.left.masked-heading-visible
+  .masked-heading-word {
+  transform:
+    translateX(0)
+    rotateY(0deg);
+}
+
+
+.masked-heading.right
+  .masked-heading-word {
+  transform:
+    translateX(-110%)
+    rotateY(-30deg);
+}
+
+.masked-heading.right.masked-heading-visible
+  .masked-heading-word {
+  transform:
+    translateX(0)
+    rotateY(0deg);
+}
+
+
+/* =========================================
+   WORD SPACING
+========================================= */
+
+.masked-heading-mask + .masked-heading-mask {
+  margin-left: 0.25em;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.masked-heading:hover
+  .masked-heading-word {
+  transition-duration: 0.5s;
+}
+
+.masked-heading:hover
+  .masked-heading-mask:nth-child(1)
+  .masked-heading-word {
+  transform: translateY(-3px);
+}
+
+.masked-heading:hover
+  .masked-heading-mask:nth-child(2)
+  .masked-heading-word {
+  transform: translateY(3px);
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .masked-heading-word {
+    opacity: 1;
+    transform: none !important;
+    filter: none;
+
+    transition: none;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+  .masked-heading-mask + .masked-heading-mask {
+    margin-left: 0.18em;
+  }
+}

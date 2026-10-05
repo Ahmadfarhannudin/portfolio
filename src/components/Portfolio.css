@@ -1,0 +1,149 @@
+.portfolio-section {
+  min-height: auto;
+  padding: 40px 20px 60px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.portfolio-container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.wishlist-section-wrapper {
+  width: 100%;
+  overflow: visible;
+}
+
+.portfolio-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.portfolio-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  margin: 0 0 20px 0;
+  line-height: 1.1;
+}
+
+.title-gradient {
+  color: #ffffff;
+}
+
+.portfolio-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #94a3b8;
+  margin: 0;
+  font-weight: 400;
+}
+
+.bubble-menu-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.folder-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  animation: folder-entrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes folder-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.drift-wall-section,
+.masonry-section {
+  width: 100%;
+  height: auto;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding-left: 0;
+  margin-top: 0;
+  margin-left: 0;
+  animation: masonry-expand 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transform-origin: top center;
+}
+
+@keyframes masonry-expand {
+  from {
+    opacity: 0;
+    transform: scaleY(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes drift-wall-expand {
+  from {
+    opacity: 0;
+    transform: scaleY(0.3);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+    max-height: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-section {
+    padding: 24px 16px 80px;
+  }
+
+  .portfolio-header {
+    margin-bottom: 36px;
+  }
+
+  .bubble-menu-wrapper {
+    justify-content: center;
+  }
+
+  .folder-section {
+    margin-top: 40px;
+    margin-bottom: 30px;
+  }
+
+  .drift-wall-section,
+  .masonry-section {
+    height: auto;
+    min-height: 320px;
+    justify-content: flex-start;
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  @keyframes drift-wall-expand {
+    from {
+      opacity: 0;
+      transform: scaleY(0.3);
+      max-height: 0;
+    }
+    to {
+      opacity: 1;
+      transform: scaleY(1);
+      max-height: 400px;
+    }
+  }
+}

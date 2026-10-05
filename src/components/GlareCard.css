@@ -1,0 +1,119 @@
+.glare-card {
+  position: relative;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(5, 10, 30, 0.98));
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  overflow: hidden;
+  isolation: isolate;
+  --glare-x: 50%;
+  --glare-y: 50%;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glare-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 1px;
+  background: conic-gradient(
+    from 0deg at var(--glare-x) var(--glare-y),
+    transparent 0deg,
+    transparent 70deg,
+    var(--accent, rgba(59, 130, 246, 0.6)) 130deg,
+    var(--accent, rgba(59, 130, 246, 0.8)) 180deg,
+    var(--accent, rgba(59, 130, 246, 0.6)) 230deg,
+    transparent 290deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glare-card--active::before {
+  opacity: 1;
+}
+
+.glare-card-border-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  background: radial-gradient(
+    250px circle at var(--glare-x) var(--glare-y),
+    var(--accent, rgba(59, 130, 246, 0.25)),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(8px);
+}
+
+.glare-card--active .glare-card-border-glow {
+  opacity: 1;
+}
+
+.glare-card-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: radial-gradient(
+    400px circle at var(--glare-x) var(--glare-y),
+    rgba(255, 255, 255, 0.08),
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: soft-light;
+}
+
+.glare-card--active .glare-card-shine {
+  opacity: 1;
+}
+
+.glare-card-corner-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.glare-card-corner-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent, rgba(59, 130, 246, 0.5)), transparent);
+  border-radius: 2px 0 0 0;
+}
+
+.glare-card-corner-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent, rgba(59, 130, 246, 0.5)), transparent);
+  border-radius: 2px 0 0 0;
+}
+
+.glare-card-content {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+}

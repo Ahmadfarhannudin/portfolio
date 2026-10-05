@@ -1,0 +1,254 @@
+/* =========================================================
+   LANYARD WRAPPER
+========================================================= */
+
+.lanyard-wrapper {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  isolation: isolate;
+
+  /* =======================================================
+     IMPORTANT:
+     allow vertical page scrolling on touch devices
+  ======================================================= */
+  touch-action: pan-y;
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   THREE CANVAS
+========================================================= */
+
+.lanyard-wrapper canvas {
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  min-width: 0 !important;
+  min-height: 0 !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  display: block !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  outline: none !important;
+
+  box-sizing: border-box;
+
+  touch-action: pan-y;
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 851px) {
+  .lanyard-wrapper {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+
+    touch-action: none;
+  }
+
+  .lanyard-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+
+    touch-action: none;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+  .lanyard-wrapper {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+
+    /*
+     * Vertical swipe = page scrolling.
+     */
+    touch-action: pan-y;
+  }
+
+  .lanyard-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+
+    touch-action: pan-y;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+  .lanyard-wrapper {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+
+    /*
+     * Do NOT use `touch-action: none`.
+     * Let the browser handle vertical scrolling.
+     */
+    touch-action: pan-y;
+
+    overscroll-behavior-x: none;
+    overscroll-behavior-y: auto;
+  }
+
+  .lanyard-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+
+    touch-action: pan-y;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .lanyard-wrapper {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+
+    touch-action: pan-y;
+  }
+
+  .lanyard-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+
+    touch-action: pan-y;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+  .lanyard-wrapper {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+
+    touch-action: pan-y;
+  }
+
+  .lanyard-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+
+/* =========================================================
+   PREVENT TEXT / IMAGE SELECTION
+========================================================= */
+
+.lanyard-wrapper,
+.lanyard-wrapper canvas {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  -webkit-touch-callout: none;
+}
+
+
+/* =========================================================
+   REMOVE TAP HIGHLIGHT
+========================================================= */
+
+.lanyard-wrapper canvas {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   SAFETY: PREVENT CANVAS FROM AFFECTING LAYOUT
+========================================================= */
+
+.lanyard-wrapper > canvas {
+  flex: none;
+
+  position: absolute !important;
+
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+}

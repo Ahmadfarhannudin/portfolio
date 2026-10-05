@@ -1,0 +1,943 @@
+/* =========================================================
+   PORTFOLIO GRID
+========================================================= */
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  overflow: visible;
+}
+
+/* =========================================================
+   FRAMER MOTION WRAPPER
+
+   Jangan memberikan transform di CSS pada wrapper ini.
+   Framer Motion yang mengatur x / y / scale / rotate.
+========================================================= */
+
+.portfolio-card-motion {
+  width: 100%;
+  min-width: 0;
+  overflow: visible;
+}
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.portfolio-card {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+
+  border: 1px solid rgba(59, 130, 246, 0.22);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(30, 27, 75, 0.6),
+      rgba(2, 6, 23, 0.8)
+    );
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  overflow: hidden;
+
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    background 0.4s ease;
+}
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.portfolio-card:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+
+  box-shadow:
+    0 30px 60px rgba(59, 130, 246, 0.2),
+    0 0 0 1px rgba(59, 130, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================================
+   PROJECT CARD
+========================================================= */
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+
+  min-height: 480px;
+}
+
+/* =========================================================
+   PROJECT CONTENT
+========================================================= */
+
+.project-card-content {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+
+  padding-top: 18px;
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.card-title {
+  margin: 0 0 8px 0;
+
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  color: #ffffff;
+
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.card-description {
+  margin: 0 0 20px 0;
+
+  font-size: 0.9rem;
+
+  color: #94a3b8;
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.card-image-wrapper {
+  width: 100%;
+  height: 220px;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  position: relative;
+}
+
+.card-image-wrapper--full {
+  width: 100%;
+  height: 360px;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.card-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s ease;
+}
+
+.card-image--full {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s ease;
+}
+
+/* =========================================================
+   IMAGE HOVER
+========================================================= */
+
+.portfolio-card:hover .card-image {
+  transform: scale(1.08);
+}
+
+/* =========================================================
+   FULL IMAGE CARD
+========================================================= */
+
+.portfolio-card--full-image {
+  padding: 12px;
+
+  min-height: 380px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================
+   IMAGE OVERLAY
+========================================================= */
+
+.card-image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent 45%,
+      rgba(2, 6, 23, 0.1) 55%,
+      rgba(2, 6, 23, 0.75) 100%
+    );
+
+  pointer-events: none;
+
+  opacity: 0.85;
+
+  transition: opacity 0.5s ease;
+}
+
+.portfolio-card:hover .card-image-overlay {
+  opacity: 1;
+}
+
+/* =========================================================
+   IMAGE TITLE
+========================================================= */
+
+.card-image-title {
+  position: absolute;
+
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  color: #ffffff;
+
+  font-size: 1.05rem;
+  font-weight: 650;
+
+  z-index: 3;
+
+  opacity: 0;
+  transform: translateY(10px);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-card:hover .card-image-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-image-title span {
+  text-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.card-image-title svg {
+  flex-shrink: 0;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 7px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.4s ease;
+}
+
+.portfolio-card:hover .card-image-title svg {
+  transform: translate(2px, -2px) scale(1.05);
+
+  background: rgba(59, 130, 246, 0.8);
+}
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.card-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-start;
+
+  margin-top: auto;
+}
+
+/* =========================================================
+   CARD BUTTON
+========================================================= */
+
+.card-button {
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 11px 20px;
+
+  border-radius: 999px;
+
+  background: rgba(148, 163, 184, 0.1);
+
+  color: #cbd5e1;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  border: 1px solid rgba(148, 163, 184, 0.2);
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  overflow: hidden;
+
+  transition:
+    background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =========================================================
+   BUTTON LIGHT
+========================================================= */
+
+.card-button::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(148, 163, 184, 0.15);
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease;
+
+  z-index: 0;
+}
+
+.card-button span,
+.card-button svg {
+  position: relative;
+
+  z-index: 1;
+}
+
+/* =========================================================
+   BUTTON HOVER
+========================================================= */
+
+.card-button:hover {
+  background: rgba(59, 130, 246, 0.12);
+
+  color: #e0e7ff;
+
+  border-color: rgba(59, 130, 246, 0.3);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(59, 130, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.card-button:hover::before {
+  opacity: 1;
+}
+
+/* =========================================================
+   BUTTON ICON
+========================================================= */
+
+.card-button svg {
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-button:hover svg {
+  transform: translate(3px, -2px);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+
+    padding: 16px 12px;
+  }
+
+  .project-card {
+    padding: 16px;
+
+    min-height: auto;
+  }
+
+  .card-image-wrapper {
+    height: 200px;
+  }
+
+  .portfolio-card--full-image {
+    min-height: 300px;
+  }
+
+  .card-image-wrapper--full {
+    height: 280px;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+  }
+
+  .card-description {
+    font-size: 0.85rem;
+
+    margin-bottom: 16px;
+  }
+
+  .card-button {
+    width: 100%;
+
+    justify-content: center;
+
+    padding: 12px 20px;
+  }
+
+  /* -------------------------------------------------------
+     MOBILE IMAGE TITLE
+  ------------------------------------------------------- */
+
+  .card-image-title {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+    font-size: 0.9rem;
+  }
+
+  .card-image-title svg {
+    width: 28px;
+    height: 28px;
+
+    padding: 6px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-card,
+  .card-image,
+  .card-image-overlay,
+  .card-image-title,
+  .card-image-title svg,
+  .card-button,
+  .card-button svg {
+    transition: none !important;
+  }
+}
+/* =========================================================
+   TAMBAHAN — TAB TRANSITION WRAPPER
+
+   Wrapper ini yang di-animasikan (fade + geser + scale)
+   oleh GSAP saat pindah tab. Jangan taruh transform CSS
+   statis di sini, biarkan GSAP yang mengatur.
+========================================================= */
+
+.portfolio-content-wrapper {
+  width: 100%;
+  will-change: transform, opacity;
+}
+
+/* =========================================================
+   TAMBAHAN — TECH STACK GRID
+========================================================= */
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 20px;
+
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+.tech-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  padding: 28px 16px;
+
+  border-radius: 18px;
+
+  border: 1px solid rgba(148, 163, 184, 0.18);
+
+  background:
+    linear-gradient(
+      160deg,
+      rgba(30, 27, 75, 0.55),
+      rgba(2, 6, 23, 0.75)
+    );
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tech-card:hover {
+  transform: translateY(-6px);
+
+  border-color: color-mix(in srgb, var(--tech-color) 55%, transparent);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.35),
+    0 0 24px color-mix(in srgb, var(--tech-color) 35%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.tech-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 56px;
+  height: 56px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tech-card:hover .tech-icon-wrapper {
+  transform: scale(1.1);
+}
+
+.tech-icon {
+  width: 32px;
+  height: 32px;
+
+  object-fit: contain;
+
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--tech-color) 45%, transparent));
+}
+
+.tech-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  color: #cbd5e1;
+
+  text-align: center;
+
+  letter-spacing: 0.01em;
+
+  transition: color 0.35s ease;
+}
+
+.tech-card:hover .tech-name {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .tech-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 14px;
+
+    padding: 16px 12px;
+  }
+
+  .tech-card {
+    padding: 20px 10px;
+  }
+
+  .tech-icon-wrapper {
+    width: 46px;
+    height: 46px;
+  }
+
+  .tech-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .tech-name {
+    font-size: 0.78rem;
+  }
+}
+/* Grid untuk certificates & awards: jangan stretch tinggi
+   antar card, biarkan masing-masing ikut aspect-ratio-nya
+   sendiri supaya card portrait & landscape rapi berdampingan */
+.portfolio-grid {
+  align-items: start;
+}
+
+/* Wrapper gambar sekarang tingginya mengikuti aspect-ratio
+   inline yang di-set dari JS (bukan height fix lagi) */
+.card-image-wrapper--full {
+  width: 100%;
+  height: auto; /* penting: hapus/override height fix sebelumnya kalau ada */
+}
+
+.card-image--full {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Opsional: batasi tinggi maksimum card portrait supaya
+   tidak terlalu menjulang dan merusak keteraturan grid,
+   sambil tetap mempertahankan rasio (crop sedikit di atas
+   batas ini kalau memang terlalu ekstrem) */
+.card-image-wrapper--portrait {
+
+}
+
+.card-image-wrapper--landscape {
+  max-height: 460px;
+}
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647; /* nilai maksimum z-index browser, paling aman */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 24px;
+  outline: none;
+}
+
+.image-lightbox-content {
+  position: relative;
+  width: 100%;
+  max-width: 90vw;
+  /* total ruang termasuk caption, supaya tidak overflow */
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.image-lightbox-content img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  /* dikurangi ~48px untuk jatah caption di bawahnya,
+     supaya gambar + caption selalu pas dalam 85vh */
+  max-height: calc(85vh - 48px);
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.image-lightbox-info {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 6px 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.image-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.image-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.image-lightbox-nav {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.image-lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.image-lightbox-nav--prev {
+  left: 20px;
+}
+
+.image-lightbox-nav--next {
+  right: 20px;
+}
+
+.card-image-wrapper--clickable {
+  cursor: pointer;
+}
+/* =========================================================
+   TAMBAHAN — CERTIFICATE / AWARD (TANPA FRAME 3D-TILT)
+
+   Card polos: cuma gambar + overlay judul saat hover,
+   tanpa border/background/blur seperti portfolio-card.
+   Tinggi mengikuti aspect-ratio asli gambar (landscape/
+   portrait), TIDAK di-fix.
+========================================================= */
+
+.image-card-plain {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease;
+}
+
+.image-card-plain:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+.image-card-plain-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+
+  transition:
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s ease;
+}
+
+.image-card-plain:hover .image-card-plain-img {
+  transform: scale(1.06);
+}
+
+.image-card-plain-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent 45%,
+      rgba(2, 6, 23, 0.1) 55%,
+      rgba(2, 6, 23, 0.75) 100%
+    );
+
+  pointer-events: none;
+
+  opacity: 0.85;
+
+  transition: opacity 0.5s ease;
+}
+
+.image-card-plain:hover .image-card-plain-overlay {
+  opacity: 1;
+}
+
+.image-card-plain-title {
+  position: absolute;
+
+  left: 18px;
+  right: 18px;
+  bottom: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 650;
+
+  z-index: 2;
+
+  opacity: 0;
+  transform: translateY(10px);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-card-plain:hover .image-card-plain-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.image-card-plain-title span {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.image-card-plain-title svg {
+  flex-shrink: 0;
+
+  width: 30px;
+  height: 30px;
+
+  padding: 6px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.4s ease;
+}
+
+.image-card-plain:hover .image-card-plain-title svg {
+  transform: translate(2px, -2px) scale(1.05);
+  background: rgba(59, 130, 246, 0.8);
+}
+
+/* Batas tinggi maksimum supaya sertifikat portrait ekstrem
+   tidak menjulang terlalu tinggi dan merusak keteraturan grid */
+.image-card-plain--portrait {
+
+}
+
+.image-card-plain--landscape {
+  max-height: 460px;
+}
+
+@media (max-width: 768px) {
+  .image-card-plain-title {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+
+    opacity: 1;
+    transform: translateY(0);
+
+    font-size: 0.9rem;
+  }
+
+  .image-card-plain-title svg {
+    width: 26px;
+    height: 26px;
+    padding: 5px;
+  }
+}

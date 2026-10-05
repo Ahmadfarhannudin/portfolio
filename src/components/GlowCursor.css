@@ -1,0 +1,17 @@
+.glow-cursor-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  display: block;
+}
+
+body.target-cursor-active .glow-cursor-canvas {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-cursor-canvas {
+    display: none;
+  }
+}

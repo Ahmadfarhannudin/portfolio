@@ -1,0 +1,1654 @@
+/* =========================================================
+   ABOUT SECTION
+========================================================= */
+
+.about-section {
+  position: relative;
+
+  width: 100%;
+
+  min-height: auto;
+  height: auto;
+
+  padding: 125px 24px 100px;
+
+  background: transparent;
+
+  overflow: visible;
+
+  isolation: isolate;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.about-container {
+  position: relative;
+
+  width: min(1200px, 100%);
+
+  margin: 0 auto;
+
+  z-index: 5;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.about-section-heading {
+  width: 100%;
+
+  margin-bottom: 42px;
+
+  text-align: center;
+}
+
+
+.about-section-kicker {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-bottom: 13px;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  letter-spacing: 0.2em;
+
+  color:
+    rgba(148, 163, 184, 0.68);
+}
+
+
+.about-section-dot {
+  width: 5px;
+  height: 5px;
+
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+
+  background: #3b82f6;
+
+  box-shadow:
+    0 0 8px
+    rgba(59, 130, 246, 0.8);
+}
+
+
+.about-section-title {
+  display: block;
+
+  margin: 0;
+
+  padding-top: 0.15em;
+
+  font-size:
+    clamp(42px, 5vw, 68px) !important;
+
+  line-height: 1.1 !important;
+
+  font-weight: 700;
+
+  letter-spacing: -0.055em;
+
+  color: #ffffff;
+
+  overflow: visible !important;
+}
+
+
+.about-section-subtitle {
+  margin: 15px 0 0;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  font-weight: 400;
+
+  color:
+    rgba(148, 163, 184, 0.62);
+}
+
+
+.about-subtitle-break {
+  display: none;
+}
+
+
+/* =========================================================
+   BENTO
+========================================================= */
+
+.about-bento {
+  position: relative;
+
+  width: 100%;
+
+  height: auto;
+
+  min-height: 0;
+
+  max-height: none;
+
+  overflow: visible;
+
+  z-index: 10;
+}
+
+
+/* =========================================================
+   MAGIC BENTO RESET
+========================================================= */
+
+.about-bento .card-grid {
+  width: 100% !important;
+
+  height: auto !important;
+
+  min-height: 0 !important;
+
+  max-height: none !important;
+
+  display: block !important;
+
+  overflow: visible !important;
+}
+
+
+.about-bento .magic-bento-card {
+  width: 100% !important;
+
+  height: auto !important;
+
+  min-height: 0 !important;
+
+  max-height: none !important;
+
+  overflow: visible !important;
+
+  transform-style: flat !important;
+}
+
+
+.about-bento .particle-container {
+  position: relative;
+
+  width: 100% !important;
+
+  height: auto !important;
+
+  min-height: 0 !important;
+
+  max-height: none !important;
+
+  overflow: visible !important;
+
+  transform-style: flat !important;
+}
+
+
+/* =========================================================
+   BENTO HOVER
+========================================================= */
+
+.about-bento .particle-container {
+  transition:
+    transform 0.35s
+      cubic-bezier(0.22, 1, 0.36, 1),
+
+    filter 0.35s ease;
+}
+
+
+.about-bento .particle-container:hover {
+  transform:
+    translateY(-4px)
+    scale(1.005);
+
+  filter:
+    drop-shadow(
+      0 15px 35px
+      rgba(0, 0, 0, 0.22)
+    )
+
+    drop-shadow(
+      0 0 20px
+      rgba(37, 99, 235, 0.06)
+    );
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.about-main-card {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    0.92fr 1.08fr;
+
+  width: 100%;
+
+  min-height: 680px;
+
+  overflow: hidden;
+
+  border-radius: 22px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.78),
+      rgba(2, 6, 23, 0.84)
+    );
+
+  border: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.about-main-content {
+  position: relative;
+
+  z-index: 5;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-start;
+
+  width: 100%;
+
+  height: 100%;
+
+  min-width: 0;
+
+  min-height: 0;
+
+  padding:
+    55px
+    45px
+    135px;
+
+  box-sizing: border-box;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.about-card-label {
+  display: inline-flex;
+
+  align-items: center;
+
+  width: fit-content;
+
+  margin-bottom: 25px;
+
+  padding-bottom: 8px;
+
+  border-bottom:
+    1px solid
+    rgba(59, 130, 246, 0.28);
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  letter-spacing: 0.2em;
+
+  color:
+    rgba(148, 163, 184, 0.55);
+}
+
+
+/* =========================================================
+   NAME
+========================================================= */
+
+.about-name {
+  width: 100%;
+
+  margin: 0 0 25px;
+
+  min-width: 0;
+}
+
+
+.about-hello {
+  display: block;
+
+  font-size:
+    clamp(15px, 1.4vw, 18px);
+
+  font-weight: 500;
+
+  letter-spacing: 0.02em;
+
+  color: #e2e8f0;
+
+  margin-bottom: 8px;
+
+  font-family: monospace;
+
+  opacity: 1;
+
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+}
+
+
+.about-name-row {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: baseline;
+
+  gap: 12px;
+
+  width: 100%;
+}
+
+
+.about-name-main,
+.about-name-accent {
+  display: inline-block;
+
+  font-size:
+    clamp(2.8rem, 5vw, 4.5rem);
+
+  font-weight: 700;
+
+  letter-spacing: -0.04em;
+
+  line-height: 1;
+
+  font-family: monospace;
+}
+
+
+.about-name-main {
+  color: #ffffff;
+}
+
+
+.about-name-accent {
+  color: #3b82f6;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.about-description {
+  width: 100%;
+
+  max-width: 650px;
+
+  margin: 0;
+}
+
+
+.about-text-primary {
+  display: block;
+
+  width: 100%;
+
+  margin: 12px 0 10px;
+
+  font-size:
+    clamp(15px, 1.15vw, 18px);
+
+  font-weight: 500;
+
+  line-height: 1.75;
+
+  letter-spacing: -0.01em;
+
+  color: #f1f5f9;
+
+  opacity: 1;
+
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.4);
+
+  -webkit-font-smoothing: antialiased;
+
+  text-rendering: optimizeLegibility;
+}
+
+
+.about-text-secondary {
+  display: block;
+
+  width: 100%;
+
+  height: 7em;
+  min-height: 7em;
+  overflow: hidden;
+
+  margin: 0;
+
+  font-size: 14.5px;
+
+  font-weight: 400;
+
+  line-height: 1.75;
+
+  letter-spacing: -0.01em;
+
+  color: #cbd5e1;
+
+  opacity: 1;
+
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+
+  -webkit-font-smoothing: antialiased;
+
+  text-rendering: optimizeLegibility;
+
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.about-actions {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-top: 29px;
+
+  width: 100%;
+}
+
+
+.about-actions > * {
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   META GRID
+========================================================= */
+
+.about-meta-grid {
+  position: absolute;
+
+  left: 45px;
+
+  right: 45px;
+
+  bottom: 30px;
+
+  z-index: 20;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 10px;
+
+  width: auto;
+
+  margin: 0;
+}
+
+
+.about-meta-item {
+  position: relative;
+
+  width: 100%;
+
+  height: 78px;
+
+  min-width: 0;
+
+  z-index: 30;
+}
+
+
+.about-meta-glare {
+  width: 100% !important;
+
+  height: 78px !important;
+
+  min-height: 78px !important;
+
+  border-radius: 14px !important;
+}
+
+
+.about-meta-card {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  width: 100%;
+
+  height: 100%;
+
+  padding:
+    14px
+    16px;
+
+  box-sizing: border-box;
+
+  border-radius: 14px;
+
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+
+  border: 1px solid rgba(59, 130, 246, 0.3);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 16px rgba(59, 130, 246, 0.1);
+
+  backdrop-filter: blur(12px);
+
+  -webkit-backdrop-filter: blur(12px);
+
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-meta-glare:hover .about-meta-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+
+  border-color: rgba(59, 130, 246, 0.5);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 12px 24px rgba(59, 130, 246, 0.15);
+}
+
+
+.about-meta-label {
+  font-size: 8px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.16em;
+
+  color:
+    rgba(148, 163, 184, 0.7);
+
+  text-transform: uppercase;
+}
+
+
+.about-meta-value {
+  font-size: 12px;
+
+  font-weight: 600;
+
+  line-height: 1.3;
+
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+
+  white-space: nowrap;
+
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-meta-glare:hover .about-meta-value {
+  background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+}
+
+
+/* =========================================================
+   VISUAL
+========================================================= */
+
+.about-main-visual {
+  position: relative;
+
+  width: 100%;
+
+  height: 100%;
+
+  min-width: 0;
+
+  min-height: 0;
+
+  overflow: hidden;
+  clip-path: inset(0 0 0 0 round 22px);
+
+  box-sizing: border-box;
+
+  touch-action: pan-y;
+
+  z-index: 4;
+
+  transform-origin: 50% 0%;
+
+  will-change: transform, opacity;
+
+  filter: drop-shadow(0 18px 34px rgba(2, 6, 23, 0.45));
+}
+
+.about-main-visual::before {
+  content: "";
+
+  position: absolute;
+
+  top: -16px;
+  left: 50%;
+
+  width: 2px;
+  height: 22px;
+
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(96, 165, 250, 0.28));
+
+  border-radius: 999px;
+
+  transform: translateX(-50%);
+
+  transform-origin: top center;
+
+  pointer-events: none;
+
+  opacity: 0.9;
+
+  z-index: 6;
+}
+
+
+/* =========================================================
+   LANYARD
+========================================================= */
+
+.about-lanyard {
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  width: 100% !important;
+
+  height: 100% !important;
+
+  min-width: 0 !important;
+
+  min-height: 0 !important;
+
+  overflow: hidden !important;
+
+  box-sizing: border-box;
+
+  touch-action: pan-y;
+
+  z-index: 1;
+}
+
+
+.about-lanyard
+.lanyard-wrapper {
+  position: relative !important;
+
+  width: 100% !important;
+
+  height: 100% !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  overflow: hidden !important;
+
+  box-sizing: border-box;
+
+  touch-action: pan-y;
+}
+
+
+.about-lanyard
+.lanyard-wrapper
+canvas {
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  width: 100% !important;
+
+  height: 100% !important;
+
+  max-width: none !important;
+
+  max-height: none !important;
+
+  display: block !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  outline: none !important;
+
+  box-sizing: border-box;
+
+  touch-action: pan-y;
+
+  user-select: none;
+
+  -webkit-user-select: none;
+}
+
+
+/* =========================================================
+   PROFILE LABEL
+========================================================= */
+
+.about-profile-label {
+  position: absolute;
+
+  right: 24px;
+
+  bottom: 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding:
+    7px
+    10px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(2, 6, 23, 0.5);
+
+  border:
+    1px solid
+    rgba(148, 163, 184, 0.12);
+
+  backdrop-filter: blur(10px);
+
+  font-size: 8px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.12em;
+
+  color:
+    rgba(203, 213, 225, 0.52);
+
+  pointer-events: none;
+
+  z-index: 10;
+}
+
+
+.about-profile-dot {
+  width: 5px;
+
+  height: 5px;
+
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+
+  background: #3b82f6;
+
+  box-shadow:
+    0 0 7px
+    rgba(59, 130, 246, 0.85);
+}
+
+@media (max-width: 850px) {
+  .about-main-visual {
+    filter: drop-shadow(0 12px 24px rgba(2, 6, 23, 0.38));
+  }
+
+  .about-main-visual::before {
+    height: 16px;
+    top: -12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-main-visual::before {
+    height: 14px;
+    top: -10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-main-visual {
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .about-section {
+    padding-left: 18px;
+
+    padding-right: 18px;
+  }
+
+
+  .about-main-card {
+    grid-template-columns:
+      1fr 0.9fr;
+
+    min-height: 580px;
+  }
+
+
+  .about-main-content {
+    padding:
+      42px
+      32px
+      125px;
+  }
+
+
+  .about-meta-grid {
+    left: 32px;
+
+    right: 32px;
+
+    bottom: 25px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+  .about-section {
+    padding:
+      80px
+      12px
+      70px;
+
+    overflow: visible !important;
+  }
+
+
+  .about-section-heading {
+    margin-bottom: 30px;
+  }
+
+
+  .about-section-title {
+    font-size:
+      clamp(38px, 11vw, 50px)
+      !important;
+  }
+
+
+  .about-section-subtitle {
+    font-size: 11px;
+  }
+
+
+  .about-subtitle-break {
+    display: block;
+  }
+
+
+  /* =======================================================
+     BENTO
+  ======================================================= */
+
+  .about-bento {
+    width: 100% !important;
+
+    height: auto !important;
+
+    overflow: visible !important;
+  }
+
+
+  .about-bento .card-grid {
+    display: block !important;
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    overflow: visible !important;
+  }
+
+
+  .about-bento .magic-bento-card {
+    display: block !important;
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    overflow: visible !important;
+
+    transform: none !important;
+  }
+
+
+  .about-bento .particle-container {
+    display: block !important;
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    overflow: visible !important;
+
+    transform: none !important;
+  }
+
+
+  /* =======================================================
+     MAIN CARD
+  ======================================================= */
+
+  .about-main-card {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    overflow: hidden !important;
+
+    border-radius: 21px;
+  }
+
+
+  /* =======================================================
+     VISUAL
+  ======================================================= */
+
+  .about-main-visual,
+  .about-main-visual--mobile {
+    order: 1 !important;
+
+    width: 100% !important;
+
+    height: 520px !important;
+
+    min-height: 520px !important;
+
+    flex: 0 0 520px !important;
+
+    overflow: hidden !important;
+
+    position: relative !important;
+
+    display: block !important;
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    transform: none !important;
+  }
+
+  .about-lanyard {
+    height: 100% !important;
+    width: 100% !important;
+  }
+
+
+  /* =======================================================
+     CONTENT
+  ======================================================= */
+
+  .about-main-content {
+    order: 2 !important;
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    padding:
+      27px
+      20px
+      27px !important;
+
+    overflow: visible !important;
+  }
+
+
+  .about-card-label {
+    margin-bottom: 20px;
+
+    font-size: 8px;
+  }
+
+
+  .about-name {
+    margin-bottom: 19px;
+  }
+
+
+  .about-hello {
+    font-size: 13px;
+  }
+
+
+  .about-name-row {
+    gap: 8px;
+  }
+
+
+  .about-name-main,
+  .about-name-accent {
+    font-size:
+      clamp(
+        2.3rem,
+        9vw,
+        3.2rem
+      );
+  }
+
+
+  .about-text-primary {
+    font-size: 15px !important;
+
+    font-weight: 500 !important;
+
+    line-height: 1.7 !important;
+
+    color: #f1f5f9 !important;
+  }
+
+
+  .about-text-secondary {
+    font-size: 13.5px !important;
+
+    line-height: 1.7 !important;
+
+    color: #e2e8f0 !important;
+  }
+
+
+  /* =======================================================
+     ACTIONS
+  ======================================================= */
+
+  .about-actions {
+    margin-top: 25px;
+
+    gap: 9px;
+  }
+
+
+  /* =======================================================
+     META
+  ======================================================= */
+
+  .about-meta-grid {
+    position: relative !important;
+
+    left: auto !important;
+
+    right: auto !important;
+
+    bottom: auto !important;
+
+    grid-template-columns: 1fr;
+
+    width: 100%;
+
+    margin-top: 28px;
+
+    gap: 10px;
+  }
+
+
+  .about-meta-item {
+    height: 72px;
+
+    min-height: 72px;
+  }
+
+
+  .about-meta-glare {
+    height: 72px !important;
+
+    min-height: 72px !important;
+  }
+
+
+  /* =======================================================
+     METEORS MOBILE
+  ======================================================= */
+
+  .about-meteors {
+    opacity: 0.85;
+  }
+
+
+  .about-nebula-left {
+    width: 300px;
+
+    height: 300px;
+
+    left: -150px;
+  }
+
+
+  .about-nebula-right {
+    width: 350px;
+
+    height: 350px;
+
+    right: -170px;
+  }
+
+
+  .about-nebula-center {
+    width: 450px;
+
+    height: 230px;
+  }
+
+
+  .about-space-glow {
+    width: 450px;
+
+    height: 280px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .about-section {
+    padding:
+      72px
+      10px
+      60px;
+  }
+
+
+  .about-section-title {
+    font-size:
+      40px !important;
+  }
+
+
+  .about-main-visual {
+    height: 420px !important;
+
+    min-height: 420px !important;
+
+    flex-basis: 420px !important;
+  }
+
+
+  .about-main-content {
+    padding:
+      24px
+      17px
+      25px !important;
+  }
+
+
+  .about-name-main,
+  .about-name-accent {
+    font-size:
+      clamp(
+        2rem,
+        10vw,
+        2.8rem
+      );
+  }
+
+
+  .about-text-primary {
+    font-size: 14px !important;
+
+    font-weight: 500 !important;
+  }
+
+
+  .about-text-secondary {
+    font-size: 13px !important;
+
+    color: #e2e8f0 !important;
+  }
+
+
+  .about-actions {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+
+  .about-actions > * {
+    width: 100%;
+  }
+
+
+  .about-meta-grid {
+    margin-top: 22px;
+  }
+
+
+  .about-meta-item,
+  .about-meta-glare {
+    height: 68px !important;
+
+    min-height: 68px !important;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .about-main-visual {
+    height: 390px !important;
+
+    min-height: 390px !important;
+
+    flex-basis: 390px !important;
+  }
+
+
+  .about-name-main,
+  .about-name-accent {
+    font-size: 2rem;
+  }
+
+}
+
+
+/* =========================================================
+   OVERFLOW SAFETY
+========================================================= */
+
+.about-section,
+.about-container,
+.about-bento,
+.about-main-card {
+  max-width: 100%;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .about-star {
+    animation: none;
+  }
+
+
+  .about-bento .particle-container:hover {
+    transform: none !important;
+  }
+
+}
+/* =========================================================
+   ABOUT MAIN CARD — LANYARD COLOR HOVER
+   GREEN → YELLOW → BLUE
+========================================================= */
+
+.about-main-card-frame {
+  --hover-radius: 22px;
+
+  position: relative;
+  width: 100%;
+  border-radius: var(--hover-radius);
+
+  isolation: isolate;
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.45s ease;
+}
+
+
+/* ---------------------------------------------------------
+   GRADIENT BORDER
+--------------------------------------------------------- */
+
+.about-main-card-frame::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+
+  border-radius: var(--hover-radius);
+
+  background:
+    linear-gradient(
+      to bottom,
+      #22c55e 0%,
+      #22c55e 30%,
+
+      #fde047 43%,
+      #fde047 57%,
+
+      #2563eb 70%,
+      #2563eb 100%
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.45s ease,
+    filter 0.45s ease;
+
+  z-index: -1;
+
+  /*
+    Membuat gradient hanya terlihat
+    sebagai garis frame
+  */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  -webkit-mask-composite: xor;
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  mask-composite: exclude;
+
+  padding: 1.5px;
+
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   OUTER GLOW
+--------------------------------------------------------- */
+
+.about-main-card-frame::after {
+  content: "";
+
+  position: absolute;
+  inset: -10px;
+
+  border-radius: calc(var(--hover-radius) + 8px);
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(34, 197, 94, 0.32) 0%,
+      rgba(34, 197, 94, 0.18) 30%,
+
+      rgba(253, 224, 71, 0.30) 43%,
+      rgba(253, 224, 71, 0.16) 57%,
+
+      rgba(37, 99, 235, 0.34) 70%,
+      rgba(37, 99, 235, 0.20) 100%
+    );
+
+  filter: blur(18px);
+
+  opacity: 0;
+
+  transition:
+    opacity 0.5s ease,
+    filter 0.5s ease;
+
+  z-index: -2;
+
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   HOVER
+--------------------------------------------------------- */
+
+.about-main-card-frame:hover {
+  transform: none;
+  filter: none;
+}
+
+.about-main-card-frame:hover::before {
+  opacity: 0;
+  filter: none;
+}
+
+.about-main-card-frame:hover::after {
+  opacity: 0;
+  filter: none;
+}
+
+
+/* ---------------------------------------------------------
+   CARD CONTENT
+--------------------------------------------------------- */
+
+.about-main-card-frame .about-main-card {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ---------------------------------------------------------
+   OPTIONAL — SUBTLE COLOR REFLECTION INSIDE CARD
+--------------------------------------------------------- */
+
+.about-main-card-frame .about-main-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(34, 197, 94, 0.035) 0%,
+      rgba(34, 197, 94, 0.01) 28%,
+
+      rgba(253, 224, 71, 0.035) 45%,
+      rgba(253, 224, 71, 0.008) 58%,
+
+      rgba(37, 99, 235, 0.045) 72%,
+      rgba(37, 99, 235, 0.015) 100%
+    );
+
+  opacity: 0;
+
+  transition: opacity 0.5s ease;
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+
+.about-main-card-frame:hover .about-main-card::before {
+  opacity: 1;
+}
+/* =========================================================
+   ABOUT CARD — LANYARD FLAG COLOR
+   GREEN / YELLOW / BLUE
+========================================================= */
+
+.about-main-card-frame .about-main-card {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   COLOR FLAG
+--------------------------------------------------------- */
+
+.about-main-card-frame .about-main-card::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      to bottom,
+
+      /* GREEN */
+      rgba(0, 220, 70, 0.22) 0%,
+      rgba(0, 220, 70, 0.22) 32%,
+
+      /* YELLOW */
+      rgba(255, 235, 0, 0.20) 32%,
+      rgba(255, 235, 0, 0.20) 65%,
+
+      /* BLUE */
+      rgba(35, 75, 255, 0.24) 65%,
+      rgba(35, 75, 255, 0.24) 100%
+    );
+
+  opacity: 0;
+
+  transform: scale(0.98);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+
+/* ---------------------------------------------------------
+   HOVER
+--------------------------------------------------------- */
+
+.about-main-card-frame:hover
+.about-main-card::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* ---------------------------------------------------------
+   CONTENT ALWAYS ABOVE FLAG
+--------------------------------------------------------- */
+
+.about-main-card-frame .about-main-card > * {
+  position: relative;
+  z-index: 2;
+}
+.about-name-tech {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: 170px; /* tinggi satu canvas untuk dua baris */
+  cursor: none;
+}
+
+.about-name-tech * {
+  cursor: none !important;
+}
+
+@media (max-width: 768px) {
+  .about-name-tech { height: 130px; }
+}
+
+@media (max-width: 400px) {
+  .about-name-tech { height: 108px; }
+}

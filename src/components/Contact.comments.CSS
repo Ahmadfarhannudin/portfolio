@@ -1,0 +1,549 @@
+/* =========================================================
+   KOMENTAR — file terpisah, di-import dari Contact.jsx
+   Semua selector diberi awalan ".contact-comments" agar
+   mengalahkan gaya lama .contact-comment* di Contact.css
+========================================================= */
+
+.contact-right .contact-comments {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(148, 170, 220, 0.16);
+}
+
+.contact-comments .contact-comments-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #f1f5f9;
+}
+
+.contact-comments .contact-comments-count {
+  padding: 2px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #7dbbff;
+  background: rgba(74, 157, 240, 0.14);
+  border: 1px solid rgba(74, 157, 240, 0.35);
+  border-radius: 999px;
+}
+
+/* ---------- Daftar komentar yang bisa di-scroll ---------- */
+.contact-comments .contact-comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-height: clamp(380px, 62vh, 580px);
+  padding-right: 8px; /* ruang untuk scrollbar */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 170, 220, 0.35) transparent;
+}
+
+.contact-comments .contact-comments-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.contact-comments .contact-comments-list::-webkit-scrollbar-thumb {
+  background: rgba(148, 170, 220, 0.3);
+  border-radius: 999px;
+}
+
+.contact-comments .contact-comments-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 170, 220, 0.5);
+}
+
+/* ---------- Thread ---------- */
+.contact-comments .contact-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ---------- Satu komentar ---------- */
+.contact-comments .contact-comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  /* reset gaya kartu lama dari Contact.css */
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+.contact-comments .contact-comment:hover {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+.contact-comments .contact-comment-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-comments .contact-comment-avatar {
+  flex: none;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--hue, 210) 75% 58%),
+    hsl(calc(var(--hue, 210) + 40) 75% 40%)
+  );
+  border-radius: 50%;
+  box-shadow: 0 8px 18px -8px hsl(var(--hue, 210) 85% 50% / 0.7);
+}
+
+.contact-comments .contact-comment.is-reply .contact-comment-avatar {
+  width: 30px;
+  height: 30px;
+  font-size: 0.8rem;
+}
+
+/* Bubble ala chat, sudut kiri-atas dibuat lancip */
+.contact-comments .contact-comment-bubble {
+  padding: 11px 15px 12px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(148, 170, 220, 0.16);
+  border-radius: 6px 18px 18px 18px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.contact-comments .contact-comment:hover .contact-comment-bubble {
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(148, 170, 220, 0.3);
+}
+
+/* Balasan dari owner: bubble beraksen biru */
+.contact-comments .contact-comment.is-owner .contact-comment-bubble {
+  background: linear-gradient(135deg, rgba(74, 157, 240, 0.18), rgba(74, 157, 240, 0.06));
+  border-color: rgba(74, 157, 240, 0.5);
+}
+
+.contact-comments .contact-comment-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin-bottom: 4px;
+}
+
+.contact-comments .contact-comment-name {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  max-width: 100%;
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: #f8fafc;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contact-comments .contact-comment-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px 2px 6px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: #7dbbff;
+  background: rgba(74, 157, 240, 0.16);
+  border: 1px solid rgba(74, 157, 240, 0.4);
+  border-radius: 999px;
+}
+
+.contact-comments .contact-comment-replyto {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 4px;
+  font-size: 0.74rem;
+  color: #7dbbff;
+}
+
+.contact-comments .contact-comment-text {
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(226, 232, 240, 0.94);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Baris bawah: waktu + tombol balas ---------- */
+.contact-comments .contact-comment-foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding: 6px 6px 0;
+}
+
+.contact-comments .contact-comment-time {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+  font-size: 0.72rem;
+  color: rgba(203, 213, 225, 0.55);
+}
+
+.contact-comments .contact-comment-time > span:first-child {
+  font-weight: 600;
+  color: rgba(147, 197, 253, 0.85);
+}
+
+.contact-comments .contact-comment-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.contact-comments .contact-comment-date::before {
+  content: '';
+  width: 3px;
+  height: 3px;
+  background: currentColor;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.contact-comments .contact-comment-reply {
+  padding: 2px 0;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 650;
+  color: rgba(203, 213, 225, 0.7);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.contact-comments .contact-comment-reply:hover,
+.contact-comments .contact-comment-reply.is-active {
+  color: #7dbbff;
+}
+
+.contact-comments .contact-comment-reply:focus-visible,
+.contact-comments .contact-replies-toggle:focus-visible,
+.contact-comments .contact-reply-cancel:focus-visible,
+.contact-comments .contact-reply-send:focus-visible,
+.contact-comments .contact-comments-more:focus-visible {
+  outline: 2px solid #7dbbff;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ---------- Balasan (garis thread di kiri) ---------- */
+.contact-comments .contact-replies {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-left: 19px; /* tepat di tengah avatar induk */
+  padding-left: 18px;
+  border-left: 2px solid rgba(148, 170, 220, 0.18);
+}
+
+.contact-comments .contact-replies-toggle {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+  padding: 4px 6px;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: #7dbbff;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.contact-comments .contact-replies-toggle:hover {
+  color: #a9d3ff;
+}
+
+/* ---------- Form balasan ---------- */
+.contact-comments .contact-reply-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  background: rgba(10, 17, 38, 0.8);
+  border: 1px solid rgba(74, 157, 240, 0.4);
+  border-radius: 16px;
+  animation: contact-pop 0.22s ease;
+}
+
+@keyframes contact-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.contact-comments .contact-reply-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 0.78rem;
+  color: rgba(203, 213, 225, 0.7);
+}
+
+.contact-comments .contact-reply-title strong {
+  color: #f1f5f9;
+}
+
+.contact-comments .contact-reply-input {
+  width: 100%;
+  padding: 10px 13px;
+  font: inherit;
+  font-size: 0.88rem;
+  color: #f8fafc;
+  background: rgba(6, 12, 30, 0.75);
+  border: 1px solid rgba(148, 170, 220, 0.24);
+  border-radius: 12px;
+  resize: vertical;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-comments .contact-reply-input::placeholder {
+  color: rgba(203, 213, 225, 0.4);
+}
+
+.contact-comments .contact-reply-input:focus {
+  outline: none;
+  border-color: #4a9df0;
+  box-shadow: 0 0 0 3px rgba(74, 157, 240, 0.22);
+}
+
+.contact-comments .contact-reply-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.contact-comments .contact-reply-count {
+  margin-right: auto;
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+  color: rgba(203, 213, 225, 0.5);
+}
+
+.contact-comments .contact-reply-cancel {
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(203, 213, 225, 0.8);
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.contact-comments .contact-reply-cancel:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.contact-comments .contact-reply-send {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #06101f;
+  background: linear-gradient(135deg, #6db3f5, #4a9df0);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px -10px rgba(74, 157, 240, 0.8);
+  transition: filter 0.2s ease;
+}
+
+.contact-comments .contact-reply-send:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.contact-comments .contact-reply-send:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+/* ---------- Skeleton loading ---------- */
+.contact-comments .contact-comment-skeletons {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contact-comments .contact-comment.is-skeleton .contact-comment-avatar {
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: none;
+}
+
+.contact-comments .contact-sk-line {
+  display: block;
+  height: 11px;
+  margin-bottom: 9px;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.06) 30%,
+    rgba(255, 255, 255, 0.14) 50%,
+    rgba(255, 255, 255, 0.06) 70%
+  );
+  background-size: 200% 100%;
+  border-radius: 6px;
+  animation: contact-shimmer 1.4s linear infinite;
+}
+
+.contact-comments .contact-sk-line.short {
+  width: 30%;
+}
+
+@keyframes contact-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ---------- Empty state ---------- */
+.contact-comments .contact-comments-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 26px 16px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(148, 170, 220, 0.28);
+  border-radius: 16px;
+}
+
+.contact-comments .contact-comments-empty p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: rgba(203, 213, 225, 0.7);
+}
+
+.contact-comments .contact-comments-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  color: #7dbbff;
+  background: rgba(74, 157, 240, 0.12);
+  border: 1px solid rgba(74, 157, 240, 0.3);
+  border-radius: 14px;
+}
+
+/* ---------- Status, tombol, pesan ---------- */
+.contact-comments .contact-comments-status {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(203, 213, 225, 0.72);
+}
+
+.contact-comments .contact-comments-status.is-error {
+  color: #fb7185;
+}
+
+.contact-comments .contact-comments-more {
+  width: 100%;
+  padding: 11px 16px;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(203, 213, 225, 0.85);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(148, 170, 220, 0.22);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.contact-comments .contact-comments-more:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.contact-form-success {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #4ade80;
+}
+
+.contact-submit:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 480px) {
+  .contact-comments .contact-comment {
+    gap: 10px;
+  }
+
+  .contact-comments .contact-comment-avatar {
+    width: 34px;
+    height: 34px;
+  }
+
+  .contact-comments .contact-replies {
+    margin-left: 16px;
+    padding-left: 12px;
+  }
+
+  .contact-comments .contact-comment-bubble {
+    padding: 10px 13px 11px;
+  }
+
+  /* tanggal lengkap disembunyikan di layar kecil (tetap muncul saat tekan-tahan / hover) */
+  .contact-comments .contact-comment-date {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-comments .contact-reply-form,
+.contact-comments .contact-sk-line {
+    animation: none;
+  }
+
+  .contact-comments .contact-comment-bubble,
+.contact-comments .contact-reply-input,
+.contact-comments .contact-comments-more {
+    transition: none;
+  }
+}

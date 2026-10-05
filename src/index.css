@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+
+  /* SAMAKAN DENGAN ABOUT */
+  background: #020617;
+
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+
+  overflow-x: hidden;
+
+  width: 100%;
+
+  color: white;
+}
+
+body {
+  min-height: 100vh;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+canvas,
+video {
+  content-visibility: auto;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.text-balance {
+  text-wrap: balance;
+}

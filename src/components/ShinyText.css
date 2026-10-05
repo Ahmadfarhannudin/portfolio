@@ -1,0 +1,24 @@
+.shiny-text {
+  display: inline-block;
+
+  background-repeat: no-repeat;
+  background-position: 150% center;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  text-rendering: optimizeLegibility;
+}
+
+.shiny-text::selection {
+  -webkit-text-fill-color: white;
+  background: rgba(59, 130, 246, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shiny-text {
+    background-position: 50% center !important;
+  }
+}

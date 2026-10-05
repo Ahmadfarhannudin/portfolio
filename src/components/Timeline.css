@@ -1,0 +1,1123 @@
+/* =========================================================
+   TIMELINE WRAPPER
+========================================================= */
+
+.timeline-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  margin-top: 32px;
+
+  padding: 50px 20px 80px;
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.timeline-header {
+  width: 100%;
+  max-width: 560px;
+
+  margin: 0 auto 60px;
+
+  text-align: center;
+}
+
+.timeline-kicker {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-bottom: 14px;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.22em;
+
+  color: rgba(148, 163, 184, 0.68);
+}
+
+.timeline-dot {
+  width: 5px;
+  height: 5px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #38bdf8;
+
+  box-shadow:
+    0 0 8px rgba(56, 189, 248, 0.95),
+    0 0 16px rgba(37, 99, 235, 0.6);
+}
+
+.timeline-title {
+  margin: 0;
+
+  font-size: clamp(36px, 4.5vw, 52px);
+
+  font-weight: 700;
+
+  line-height: 1.15;
+
+  letter-spacing: -0.03em;
+
+  color: #ffffff;
+}
+
+.timeline-subtitle {
+  margin: 14px 0 0;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  color: rgba(148, 163, 184, 0.62);
+}
+
+/* =========================================================
+   TRACK
+========================================================= */
+
+.timeline-track {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  /*
+    Penting:
+    membuat stacking context utama.
+  */
+  isolation: isolate;
+}
+
+/* =========================================================
+   BACKGROUND LINE
+========================================================= */
+
+.timeline-line-track {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: 50%;
+
+  width: 2px;
+
+  transform: translateX(-50%);
+
+  z-index: 1;
+
+  border-radius: 999px;
+
+  background: rgba(148, 163, 184, 0.1);
+}
+
+/* =========================================================
+   ACTIVE LINE
+   BLUE → CYAN → BLUE
+========================================================= */
+
+.timeline-line-fill {
+  position: absolute;
+
+  top: 0;
+
+  left: 50%;
+
+  width: 2px;
+
+  transform: translateX(-50%);
+
+  z-index: 2;
+
+  border-radius: 999px;
+
+  background: linear-gradient(
+    180deg,
+    #2563eb 0%,
+    #38bdf8 45%,
+    #22d3ee 65%,
+    #2563eb 100%
+  );
+
+  box-shadow:
+    0 0 4px rgba(56, 189, 248, 1),
+    0 0 10px rgba(37, 99, 235, 0.9),
+    0 0 20px rgba(56, 189, 248, 0.6),
+    0 0 35px rgba(37, 99, 235, 0.3);
+}
+
+/* =========================================================
+   PROGRESS HEAD
+========================================================= */
+
+.timeline-line-head {
+  position: absolute;
+
+  left: 50%;
+
+  width: 12px;
+  height: 12px;
+
+  transform: translate(-50%, -50%);
+
+  z-index: 5;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px #020617,
+    0 0 0 4px #38bdf8,
+    0 0 12px rgba(56, 189, 248, 1),
+    0 0 25px rgba(37, 99, 235, 0.7);
+}
+
+/* =========================================================
+   ITEM
+========================================================= */
+
+.timeline-item {
+  position: relative;
+
+  width: 100%;
+
+  display: flex;
+
+  min-height: 44px;
+
+  margin-bottom: 70px;
+
+  box-sizing: border-box;
+
+  /*
+    =======================================================
+    INI FIX UTAMANYA
+    =======================================================
+
+    Karena Framer Motion menggunakan transform
+    pada timeline-item, element ini menjadi
+    stacking context.
+
+    Maka timeline-item HARUS berada di atas
+    timeline-line-fill.
+  */
+
+  z-index: 10;
+
+  /*
+    Memastikan marker/card berada
+    di atas garis.
+  */
+  isolation: isolate;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-item--left {
+  justify-content: flex-start;
+}
+
+.timeline-item--right {
+  justify-content: flex-end;
+}
+
+/* =========================================================
+   MARKER
+========================================================= */
+
+.timeline-marker {
+  position: absolute;
+
+  top: 0;
+
+  left: 50%;
+
+  width: 44px;
+  height: 44px;
+
+  /*
+    Center menggunakan margin.
+    Tidak menggunakan translateX karena
+    Framer Motion menggunakan transform.
+  */
+
+  margin-left: -22px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  /*
+    SANGAT PENTING
+    Marker harus di atas semua garis.
+  */
+
+  z-index: 100;
+
+  /*
+    Background solid.
+    Garis tidak bisa terlihat di dalamnya.
+  */
+
+  background: #020617;
+
+  /*
+    Gradient border biru.
+  */
+
+  border: 1px solid #38bdf8;
+
+  border-radius: 50%;
+
+  color: #38bdf8;
+
+  /*
+    Ring gelap terlebih dahulu
+    untuk memisahkan marker dari garis.
+  */
+
+  box-shadow:
+    0 0 0 4px #020617,
+    0 0 0 5px rgba(37, 99, 235, 0.95),
+    0 0 12px rgba(56, 189, 248, 0.9),
+    0 0 25px rgba(37, 99, 235, 0.5);
+
+  /*
+    Marker membuat stacking context sendiri.
+  */
+
+  isolation: isolate;
+
+  overflow: hidden;
+
+  transition:
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* =========================================================
+   MARKER INNER BACKGROUND
+========================================================= */
+
+.timeline-marker::before {
+  content: "";
+
+  position: absolute;
+
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  left: 2px;
+
+  z-index: -1;
+
+  border-radius: 50%;
+
+  /*
+    Solid background.
+    Ini benar-benar menutup garis.
+  */
+
+  background: #020617;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.timeline-marker svg {
+  position: relative;
+
+  z-index: 2;
+
+  display: block;
+
+  width: 16px;
+  height: 16px;
+
+  flex-shrink: 0;
+
+  color: #38bdf8;
+
+  stroke-width: 1.8;
+}
+
+/* =========================================================
+   MARKER HOVER
+========================================================= */
+
+.timeline-marker:hover {
+  color: #7dd3fc;
+
+  border-color: #7dd3fc;
+
+  box-shadow:
+    0 0 0 4px #020617,
+    0 0 0 5px rgba(56, 189, 248, 1),
+    0 0 18px rgba(56, 189, 248, 0.95),
+    0 0 35px rgba(37, 99, 235, 0.55);
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.timeline-card {
+  position: relative;
+
+  width: calc(50% - 45px);
+
+  padding: 22px 24px;
+
+  box-sizing: border-box;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.72),
+      rgba(2, 6, 23, 0.78)
+    );
+
+  border: 1px solid rgba(148, 163, 184, 0.12);
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.timeline-card:hover {
+  border-color: rgba(56, 189, 248, 0.32);
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 24px 55px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(56, 189, 248, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* =========================================================
+   PERIOD
+========================================================= */
+
+.timeline-period {
+  display: inline-block;
+
+  margin-bottom: 10px;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+
+  color: rgba(148, 163, 184, 0.55);
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.timeline-item-title {
+  margin: 0 0 6px;
+
+  font-size: clamp(18px, 1.6vw, 22px);
+
+  font-weight: 700;
+
+  line-height: 1.3;
+
+  color: #ffffff;
+}
+
+/* =========================================================
+   PLACE
+========================================================= */
+
+.timeline-place {
+  margin: 0 0 12px;
+
+  font-size: 14.5px;
+
+  font-weight: 600;
+
+  color: #38bdf8;
+}
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.timeline-description {
+  margin: 0 0 16px;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  color: rgba(203, 213, 225, 0.55);
+}
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.timeline-tags {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.timeline-tag {
+  padding: 4px 11px;
+
+  border-radius: 999px;
+
+  font-size: 11.5px;
+
+  font-weight: 500;
+
+  color: rgba(125, 211, 252, 0.95);
+
+  background: rgba(37, 99, 235, 0.08);
+
+  border: 1px solid rgba(56, 189, 248, 0.2);
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.timeline-tag:hover {
+  color: #bae6fd;
+
+  background: rgba(37, 99, 235, 0.13);
+
+  border-color: rgba(56, 189, 248, 0.38);
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .timeline-wrapper {
+    padding: 45px 18px 60px;
+  }
+
+  .timeline-header {
+    margin-bottom: 50px;
+  }
+
+  .timeline-card {
+    width: calc(50% - 38px);
+
+    padding: 18px 20px;
+  }
+
+  .timeline-marker {
+    width: 38px;
+    height: 38px;
+
+    margin-left: -19px;
+  }
+
+  .timeline-marker svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* =========================================================
+   MOBILE — IMPROVED READABILITY
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .timeline-wrapper {
+    width: 100%;
+    padding: 40px 12px 60px;
+    box-sizing: border-box;
+  }
+
+  /* =======================================================
+     HEADER
+  ======================================================= */
+
+  .timeline-header {
+    width: 100%;
+    margin: 0 auto 42px;
+    padding: 0 8px;
+  }
+
+  .timeline-kicker {
+    margin-bottom: 12px;
+
+    font-size: 11px;
+    letter-spacing: 0.18em;
+  }
+
+  .timeline-title {
+    font-size: 32px;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+
+  .timeline-subtitle {
+    max-width: 340px;
+
+    margin: 12px auto 0;
+
+    font-size: 14px;
+    line-height: 1.7;
+
+    color: rgba(148, 163, 184, 0.72);
+  }
+
+  /* =======================================================
+     TIMELINE LINE
+  ======================================================= */
+
+  .timeline-line-track,
+  .timeline-line-fill {
+    left: 19px;
+    transform: none;
+  }
+
+  .timeline-line-head {
+    left: 19px;
+    transform: translate(-50%, -50%);
+  }
+
+  /* =======================================================
+     TIMELINE ITEM
+  ======================================================= */
+
+  .timeline-item,
+  .timeline-item--left,
+  .timeline-item--right {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+
+    padding-left: 56px;
+    padding-right: 2px;
+
+    margin-bottom: 34px;
+
+    box-sizing: border-box;
+
+    z-index: 10;
+  }
+
+  /* =======================================================
+     MARKER
+  ======================================================= */
+
+  .timeline-marker {
+    left: 19px;
+
+    margin-left: -18px;
+
+    width: 36px;
+    height: 36px;
+
+    z-index: 100;
+
+    background: #020617;
+
+    border: 1px solid #38bdf8;
+
+    box-shadow:
+      0 0 0 4px #020617,
+      0 0 0 5px rgba(37, 99, 235, 0.95),
+      0 0 12px rgba(56, 189, 248, 0.8),
+      0 0 25px rgba(37, 99, 235, 0.35);
+  }
+
+  .timeline-marker::before {
+    background: #020617;
+  }
+
+  .timeline-marker svg {
+    width: 15px;
+    height: 15px;
+
+    stroke-width: 1.8;
+  }
+
+  /* =======================================================
+     CARD
+  ======================================================= */
+
+  .timeline-card {
+    width: 100%;
+
+    min-width: 0;
+
+    padding: 20px 18px;
+
+    border-radius: 16px;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(15, 23, 42, 0.88),
+        rgba(2, 6, 23, 0.94)
+      );
+
+    border: 1px solid rgba(56, 189, 248, 0.13);
+
+    box-shadow:
+      0 14px 35px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+    overflow: hidden;
+  }
+
+  .timeline-card:hover {
+    transform: none;
+
+    border-color: rgba(56, 189, 248, 0.2);
+  }
+
+  /* =======================================================
+     PERIOD
+  ======================================================= */
+
+  .timeline-period {
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 11.5px;
+
+    line-height: 1.5;
+
+    letter-spacing: 0.08em;
+
+    color: rgba(148, 163, 184, 0.65);
+  }
+
+  /* =======================================================
+     TITLE
+  ======================================================= */
+
+  .timeline-item-title {
+    margin: 0 0 7px;
+
+    font-size: 21px;
+
+    line-height: 1.35;
+
+    letter-spacing: -0.015em;
+
+    font-weight: 700;
+
+    color: #ffffff;
+
+    /*
+      Agar judul panjang tidak keluar card
+    */
+
+    overflow-wrap: anywhere;
+  }
+
+  /* =======================================================
+     PLACE
+  ======================================================= */
+
+  .timeline-place {
+    margin: 0 0 13px;
+
+    font-size: 15px;
+
+    line-height: 1.55;
+
+    font-weight: 600;
+
+    color: #38bdf8;
+
+    overflow-wrap: anywhere;
+  }
+
+  /* =======================================================
+     DESCRIPTION
+  ======================================================= */
+
+  .timeline-description {
+    margin: 0 0 17px;
+
+    font-size: 14.5px;
+
+    line-height: 1.75;
+
+    color: rgba(203, 213, 225, 0.72);
+
+    overflow-wrap: anywhere;
+  }
+
+  /* =======================================================
+     TAGS
+  ======================================================= */
+
+  .timeline-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+  }
+
+  .timeline-tag {
+    padding: 6px 11px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    line-height: 1.3;
+
+    font-weight: 500;
+
+    color: rgba(125, 211, 252, 0.95);
+
+    background: rgba(37, 99, 235, 0.08);
+
+    border: 1px solid rgba(56, 189, 248, 0.2);
+  }
+}
+
+/* =========================================================
+   MOBILE KECIL
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .timeline-wrapper {
+    padding: 35px 10px 55px;
+  }
+
+  /* =======================================================
+     HEADER
+  ======================================================= */
+
+  .timeline-header {
+    margin-bottom: 38px;
+    padding: 0 6px;
+  }
+
+  .timeline-kicker {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+  }
+
+  .timeline-title {
+    font-size: 27px;
+  }
+
+  .timeline-subtitle {
+    max-width: 310px;
+
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+
+  /* =======================================================
+     LINE
+  ======================================================= */
+
+  .timeline-line-track,
+  .timeline-line-fill {
+    left: 16px;
+  }
+
+  .timeline-line-head {
+    left: 16px;
+  }
+
+  /* =======================================================
+     ITEM
+  ======================================================= */
+
+  .timeline-item,
+  .timeline-item--left,
+  .timeline-item--right {
+    padding-left: 48px;
+    padding-right: 0;
+
+    margin-bottom: 30px;
+  }
+
+  /* =======================================================
+     MARKER
+  ======================================================= */
+
+  .timeline-marker {
+    left: 16px;
+
+    margin-left: -16px;
+
+    width: 32px;
+    height: 32px;
+
+    z-index: 100;
+
+    background: #020617;
+
+    border-color: #38bdf8;
+
+    box-shadow:
+      0 0 0 3px #020617,
+      0 0 0 4px rgba(37, 99, 235, 0.95),
+      0 0 10px rgba(56, 189, 248, 0.7),
+      0 0 20px rgba(37, 99, 235, 0.3);
+  }
+
+  .timeline-marker::before {
+    background: #020617;
+  }
+
+  .timeline-marker svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  /* =======================================================
+     CARD
+  ======================================================= */
+
+  .timeline-card {
+    width: 100%;
+
+    padding: 18px 16px;
+
+    border-radius: 15px;
+
+    box-sizing: border-box;
+  }
+
+  /* =======================================================
+     PERIOD
+  ======================================================= */
+
+  .timeline-period {
+    margin-bottom: 8px;
+
+    font-size: 9.5px;
+
+    line-height: 1.5;
+  }
+
+  /* =======================================================
+     TITLE
+  ======================================================= */
+
+  .timeline-item-title {
+    margin-bottom: 6px;
+
+    font-size: 17px;
+
+    line-height: 1.35;
+  }
+
+  /* =======================================================
+     PLACE
+  ======================================================= */
+
+  .timeline-place {
+    margin-bottom: 12px;
+
+    font-size: 12.5px;
+
+    line-height: 1.55;
+  }
+
+  /* =======================================================
+     DESCRIPTION
+  ======================================================= */
+
+  .timeline-description {
+    margin-bottom: 15px;
+
+    font-size: 12.5px;
+
+    line-height: 1.75;
+  }
+
+  /* =======================================================
+     TAGS
+  ======================================================= */
+
+  .timeline-tags {
+    gap: 6px;
+  }
+
+  .timeline-tag {
+    padding: 4px 9px;
+
+    font-size: 10px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .timeline-wrapper {
+    padding: 30px 8px 50px;
+  }
+
+  /* =======================================================
+     HEADER
+  ======================================================= */
+
+  .timeline-header {
+    margin-bottom: 34px;
+  }
+
+  .timeline-title {
+    font-size: 25px;
+  }
+
+  .timeline-subtitle {
+    font-size: 12px;
+  }
+
+  /* =======================================================
+     LINE
+  ======================================================= */
+
+  .timeline-line-track,
+  .timeline-line-fill {
+    left: 15px;
+  }
+
+  .timeline-line-head {
+    left: 15px;
+  }
+
+  /* =======================================================
+     ITEM
+  ======================================================= */
+
+  .timeline-item,
+  .timeline-item--left,
+  .timeline-item--right {
+    padding-left: 46px;
+  }
+
+  /* =======================================================
+     MARKER
+  ======================================================= */
+
+  .timeline-marker {
+    left: 15px;
+
+    margin-left: -15px;
+
+    width: 30px;
+    height: 30px;
+
+    z-index: 100;
+
+    background: #020617;
+
+    border-color: #38bdf8;
+
+    box-shadow:
+      0 0 0 3px #020617,
+      0 0 0 4px rgba(37, 99, 235, 0.95),
+      0 0 8px rgba(56, 189, 248, 0.65),
+      0 0 18px rgba(37, 99, 235, 0.3);
+  }
+
+  .timeline-marker svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* =======================================================
+     CARD
+  ======================================================= */
+
+  .timeline-card {
+    padding: 17px 15px;
+
+    border-radius: 14px;
+  }
+
+  /* =======================================================
+     TEXT
+  ======================================================= */
+
+  .timeline-period {
+    font-size: 9px;
+  }
+
+  .timeline-item-title {
+    font-size: 16px;
+
+    line-height: 1.35;
+  }
+
+  .timeline-place {
+    font-size: 12px;
+
+    line-height: 1.55;
+  }
+
+  .timeline-description {
+    font-size: 12px;
+
+    line-height: 1.75;
+  }
+
+  .timeline-tag {
+    padding: 4px 8px;
+
+    font-size: 9.5px;
+  }
+}

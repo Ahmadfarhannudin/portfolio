@@ -1,0 +1,111 @@
+/* =========================================================
+   WHATSAPP FLOATING BUTTON
+========================================================= */
+
+.whatsapp-fab {
+  position: fixed;
+
+  /* env(safe-area-inset-*) mengikuti area aman di HP dengan gesture bar / notch */
+  right: calc(24px + env(safe-area-inset-right, 0px));
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+
+  z-index: 80;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 58px;
+  height: 58px;
+
+  border-radius: 999px;
+
+  background: #25d366;
+
+  box-shadow:
+    0 10px 28px rgba(37, 211, 102, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+
+  text-decoration: none;
+
+  overflow: visible;
+
+  /* jaga ukuran tombol tetap tap-friendly (min 44px rekomendasi Apple/Google) */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.whatsapp-fab-icon {
+  width: 30px;
+  height: 30px;
+
+  color: #ffffff;
+
+  position: relative;
+  z-index: 1;
+}
+
+/* denyut halus di belakang tombol, menandakan "tersedia untuk dihubungi" */
+.whatsapp-fab-ping {
+  position: absolute;
+  inset: 0;
+
+  border-radius: 999px;
+
+  background: #25d366;
+
+  opacity: 0.55;
+
+  animation: whatsapp-fab-pulse 2.2s ease-out infinite;
+}
+
+@keyframes whatsapp-fab-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .whatsapp-fab {
+    right: calc(16px + env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+
+    width: 52px;
+    height: 52px;
+  }
+
+  .whatsapp-fab-icon {
+    width: 27px;
+    height: 27px;
+  }
+}
+
+/* HP sangat sempit (mis. iPhone SE) — tombol dikecilkan lagi
+   supaya tidak menutupi konten atau tombol lain di pojok bawah */
+@media (max-width: 380px) {
+  .whatsapp-fab {
+    right: calc(12px + env(safe-area-inset-right, 0px));
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+
+    width: 46px;
+    height: 46px;
+  }
+
+  .whatsapp-fab-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-fab-ping {
+    animation: none;
+    opacity: 0;
+  }
+}

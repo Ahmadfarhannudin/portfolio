@@ -1,0 +1,171 @@
+.star-border {
+  --star-color: rgba(59, 130, 246, 0.9);
+  --star-speed: 5s;
+  --star-thickness: 1px;
+
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 150px;
+  height: 46px;
+
+  padding: 0 20px;
+
+  border: 0;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: white;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.star-border::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: inherit;
+
+  padding: var(--star-thickness);
+
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 55deg,
+      var(--star-color) 85deg,
+      rgba(147, 197, 253, 0.95) 105deg,
+      transparent 135deg,
+      transparent 360deg
+    );
+
+  animation:
+    star-border-spin var(--star-speed)
+    linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0)
+      content-box,
+    linear-gradient(#000 0 0);
+
+  -webkit-mask-composite: xor;
+
+  mask:
+    linear-gradient(#000 0 0)
+      content-box,
+    linear-gradient(#000 0 0);
+
+  mask-composite: exclude;
+
+  pointer-events: none;
+}
+
+.star-border-glow {
+  position: absolute;
+
+  width: 70px;
+  height: 70px;
+
+  top: 50%;
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      var(--star-color),
+      transparent 70%
+    );
+
+  filter: blur(18px);
+
+  opacity: 0.18;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+
+  pointer-events: none;
+}
+
+.star-border-content {
+  position: relative;
+
+  z-index: 2;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  white-space: nowrap;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  letter-spacing: -0.01em;
+}
+
+.star-border:hover {
+  transform:
+    translateY(-2px);
+
+  background:
+    rgba(59, 130, 246, 0.08);
+}
+
+.star-border:hover
+.star-border-glow {
+  opacity: 0.42;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1.5);
+}
+
+.star-border:active {
+  transform:
+    translateY(0)
+    scale(0.98);
+}
+
+@keyframes star-border-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star-border::before {
+    animation: none;
+  }
+
+  .star-border {
+    transition: none;
+  }
+}
