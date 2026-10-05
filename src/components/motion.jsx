@@ -22,6 +22,7 @@ import {
   useReducedMotion as fmUseReducedMotion,
   useInView as fmUseInView,
   useAnimation as fmUseAnimation,
+  isMotionValue as fmIsMotionValue,
 } from "framer-motion";
 import { useEffect, useRef, useState, forwardRef } from "react";
 import "./motion-lite.css";
@@ -99,6 +100,31 @@ function makeLite(Tag) {
 
     /* Desktop: framer-motion asli, tidak diubah */
     if (!coarse) {
+      const FmTag = fmMotion[Tag];
+      return (
+        <FmTag
+          ref={ref}
+          initial={initial}
+          whileInView={whileInView}
+          whileHover={whileHover}
+          whileTap={whileTap}
+          viewport={viewport}
+          transition={transition}
+          onViewportEnter={onViewportEnter}
+          {...props}
+        />
+      );
+    }
+
+    /* Jika style berisi MotionValue (mis. garis progress timeline),
+       tetap pakai framer-motion asli walau di HP */
+    const style = props.style;
+    const hasMotionValue =
+      style &&
+      typeof style === "object" &&
+      Object.values(style).some((v) => fmIsMotionValue(v));
+
+    if (hasMotionValue) {
       const FmTag = fmMotion[Tag];
       return (
         <FmTag

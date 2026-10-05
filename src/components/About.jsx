@@ -176,15 +176,15 @@ export default function About({
 
           <MagicBento
             textAutoHide={false}
-            enableStars={true}
-            enableSpotlight={true}
-            enableBorderGlow={true}
+            enableStars={!isMobile}
+            enableSpotlight={!isMobile}
+            enableBorderGlow={!isMobile}
             disableAnimations={false}
             spotlightRadius={350}
-            particleCount={10}
+            particleCount={isMobile ? 0 : 10}
             enableTilt={false}
             glowColor="37, 99, 235"
-            clickEffect={true}
+            clickEffect={!isMobile}
             enableMagnetism={false}
           >
 
