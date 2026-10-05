@@ -25,8 +25,9 @@ import Contact from "./components/Contact";
 import NotFound from "./components/NotFound";
 
 import SpaceBackground from "./components/SpaceBackground";
-import GlowCursor from "./components/GlowCursor";
 import TargetCursor from "./components/TargetCursor";
+import { useIsCoarsePointer } from "./hooks/useMediaQuery";
+
 import LoadingScreen from "./components/LoadingScreen";
 
 import WhatsAppButton from "./components/WhatsAppButton";
@@ -139,6 +140,7 @@ function HomePage({
 
 function AppContent() {
   const location = useLocation();
+  const isCoarsePointer = useIsCoarsePointer();
 
   const knownRoute = isKnownRoute(
     location.pathname
@@ -304,14 +306,15 @@ function AppContent() {
     if (isLoading) return;
 
     const lenis = new Lenis({
-      duration: 1.25,
+      duration: isCoarsePointer ? 0.8 : 1.05,
       easing: (t) =>
         Math.min(
           1,
           1.001 - Math.pow(2, -10 * t)
         ),
-      smoothWheel: true,
-      touchMultiplier: 2,
+      smoothWheel: !isCoarsePointer,
+      syncTouch: false,
+      touchMultiplier: 1,
     });
 
     window.__lenis = lenis;
@@ -355,7 +358,7 @@ function AppContent() {
 
       window.__lenis = null;
     };
-  }, [isLoading, knownRoute]);
+  }, [isLoading, knownRoute, isCoarsePointer]);
 
   /* =========================================================
      PORTFOLIO SELECT
@@ -449,20 +452,15 @@ function AppContent() {
             "
           >
             <SpaceBackground
-              meteorCount={3}
-              showMeteors={true}
+              meteorCount={isCoarsePointer ? 1 : 3}
+              showMeteors={!isCoarsePointer}
               showStars={true}
-              showNebula={true}
+              starCount={isCoarsePointer ? 28 : 60}
+              showNebula={!isCoarsePointer}
             />
           </div>
 
-          <GlowCursor
-            color="#3b82f6"
-            secondaryColor="#8b5cf6"
-            trailLength={32}
-            glowIntensity={1.8}
-            opacity={0.85}
-          />
+
 
           <div className="relative z-10">
             <NotFound />
@@ -526,30 +524,27 @@ function AppContent() {
           "
         >
           <SpaceBackground
-            meteorCount={3}
-            showMeteors={true}
+            meteorCount={isCoarsePointer ? 1 : 3}
+            showMeteors={!isCoarsePointer}
             showStars={true}
-            showNebula={true}
+            starCount={isCoarsePointer ? 28 : 60}
+            showNebula={!isCoarsePointer}
           />
         </div>
 
         {/* ===================================================
-            GLOW CURSOR
+            TARGET CURSOR
         =================================================== */}
 
-        <GlowCursor
-          color="#3b82f6"
-          secondaryColor="#8b5cf6"
-          trailLength={32}
-          glowIntensity={1.8}
-          opacity={0.85}
-        />
-        <TargetCursor
-          areaSelector=".wishlist-polaroid-stage, .masonry-section"
-          targetSelector=".masonry-item, .wishlist-polaroid"
-          cursorColor="#ffffff"
-          cursorColorOnTarget="#8b5cf6"
-        />
+        {!isCoarsePointer && (
+          <TargetCursor
+            areaSelector=".wishlist-polaroid-stage, .masonry-section"
+            targetSelector=".masonry-item, .wishlist-polaroid"
+            cursorColor="#ffffff"
+            cursorColorOnTarget="#8b5cf6"
+          />
+        )}
+
 
         {/* ===================================================
             NAVBAR

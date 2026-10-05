@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useIsCoarsePointer } from '../hooks/useMediaQuery';
 
 import './TechText.css';
 
@@ -64,6 +65,7 @@ const TechText = ({
   className = '',
   style
 }) => {
+  const isCoarsePointer = useIsCoarsePointer();
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const settingsRef = useRef(null);
@@ -635,7 +637,7 @@ const TechText = ({
     const resize = () => {
       width = Math.max(1, container.clientWidth);
       height = Math.max(1, container.clientHeight);
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, isCoarsePointer ? 1 : 2);
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       layoutKey = '';
@@ -714,7 +716,7 @@ const TechText = ({
       container.removeEventListener('pointercancel', onUp);
       container.removeEventListener('pointerleave', onLeave);
     };
-  }, []);
+  }, [isCoarsePointer]);
 
   const label = lines && lines.length ? lines.map(l => l.text).join(' ') : text;
 

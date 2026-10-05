@@ -667,7 +667,7 @@ export function Globe3D({
       {!loaded && <GlobeLoading />}
 
       <Canvas
-        dpr={[1, 1.75]}
+        dpr={[1, 1.25]}
         style={{ width: "100%", height: "100%", display: "block" }}
         resize={{ scroll: false, debounce: 0 }}
         camera={{ position: [0, 0, finalConfig.homeDistance], fov: 38, near: 0.1, far: 100 }}

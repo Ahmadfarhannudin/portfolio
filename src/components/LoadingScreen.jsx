@@ -27,7 +27,7 @@ const GREETINGS = [
   "Sawubona",
 ];
 
-const GREETING_INTERVAL = 340;
+const GREETING_INTERVAL = 200;
 const TOTAL_DURATION =
   GREETINGS.length * GREETING_INTERVAL;
 
