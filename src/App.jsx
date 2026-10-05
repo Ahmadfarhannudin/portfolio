@@ -306,7 +306,7 @@ function AppContent() {
     if (isLoading) return;
 
     const lenis = new Lenis({
-      duration: isCoarsePointer ? 0.8 : 1.05,
+      duration: isCoarsePointer ? 0.5 : 1.05,
       easing: (t) =>
         Math.min(
           1,
