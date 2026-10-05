@@ -12,6 +12,7 @@ import {
 } from "react";
 
 import "./About.css";
+import LazyMount from "./LazyMount";
 import TechText from "./TechText";
 import MagicBento from "./MagicBento";
 const Lanyard = lazy(() => import("./Lanyard"));
@@ -579,7 +580,8 @@ export default function About({
 
                       <div className="about-lanyard">
 
-                        <Suspense fallback={<div className="w-full h-full min-h-[300px]" />}>
+                        <LazyMount minHeight={300} fallback={<div className="w-full h-full min-h-[300px]" />}>
+<Suspense fallback={<div className="w-full h-full min-h-[300px]" />}>
                           <Lanyard
                             key="lanyard-mobile"
                             position={[
@@ -604,6 +606,7 @@ export default function About({
                             cardScale={3.4}
                           />
                         </Suspense>
+</LazyMount>
 
                       </div>
 
@@ -729,7 +732,8 @@ export default function About({
 
                       <div className="about-lanyard">
 
-                        <Suspense fallback={<div className="w-full h-full min-h-[300px]" />}>
+                        <LazyMount minHeight={300} fallback={<div className="w-full h-full min-h-[300px]" />}>
+<Suspense fallback={<div className="w-full h-full min-h-[300px]" />}>
                           <Lanyard
                             key="lanyard-desktop"
                             position={[
@@ -754,6 +758,7 @@ export default function About({
                             cardScale={3.1}
                           />
                         </Suspense>
+</LazyMount>
 
                       </div>
 

@@ -49,6 +49,7 @@ import mTetapHidup from "../assets/portfolio/galery/masonry/tetap hidup !!!.jpeg
 import mWa from "../assets/portfolio/galery/masonry/WhatsApp Image 2026-09-28 at 16.07.11.jpeg";
 
 import "./Portfolio.css";
+import LazyMount from "./LazyMount";
 
 
 /* =========================================================
@@ -422,7 +423,8 @@ export default function Portfolio({
 
               <div className="circular-gallery-section">
 
-                <Suspense fallback={<div className="w-full h-64" />}>
+                <LazyMount minHeight={256} fallback={<div className="w-full h-64" />}>
+<Suspense fallback={<div className="w-full h-64" />}>
                   <CircularGallery
                     bend={3}
                     textColor="#ffffff"
@@ -447,6 +449,7 @@ export default function Portfolio({
                     ]}
                   />
                 </Suspense>
+</LazyMount>
 
                 <p className="circular-gallery-hint">
                   drag • scroll • arrow keys

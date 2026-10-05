@@ -9,6 +9,7 @@ import { MapPin } from "lucide-react";
 
 const Globe3D = lazy(() => import("./ui/3d-globe").then(m => ({ default: m.Globe3D })));
 import "./Wishlist.css";
+import LazyMount from "./LazyMount";
 
 /* =========================================================
    SINGLE SOURCE OF TRUTH
@@ -385,9 +386,11 @@ function WishlistGlobe({ dragActive }) {
       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="wishlist-globe">
-        <Suspense fallback={<div className="w-full h-full min-h-[350px]" />}>
+        <LazyMount minHeight={350} fallback={<div className="w-full h-full min-h-[350px]" />}>
+<Suspense fallback={<div className="w-full h-full min-h-[350px]" />}>
           <Globe3D markers={wishlistMarkers} config={config} />
         </Suspense>
+</LazyMount>
       </div>
     </motion.div>
   );
