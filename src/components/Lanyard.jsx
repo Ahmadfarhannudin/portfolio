@@ -481,12 +481,23 @@ function Band({
     if (dragged) {
       vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
       dir.copy(vec).sub(state.camera.position).normalize();
-      vec.add(dir.multiplyScalar(state.camera.position.length()));
+
+      // Project pointer ke plane kedalaman z milik card agar halus & tidak mental di mobile
+      const cardZ = card.current ? card.current.translation().z : 0;
+      const distance = (cardZ - state.camera.position.z) / dir.z;
+      vec.copy(state.camera.position).add(dir.multiplyScalar(distance));
+
       [card, j1, j2, j3, fixed].forEach(ref => ref.current?.wakeUp());
+
+      const targetX = vec.x - dragged.x;
+      const targetY = vec.y - dragged.y;
+      const targetZ = vec.z - dragged.z;
+
+      // Restrain posisi ekstrem agar tali tidak acak-acakan di layar sentuh
       card.current?.setNextKinematicTranslation({
-        x: vec.x - dragged.x,
-        y: vec.y - dragged.y,
-        z: vec.z - dragged.z,
+        x: Math.max(-8, Math.min(8, targetX)),
+        y: Math.max(-8, Math.min(6, targetY)),
+        z: Math.max(-5, Math.min(5, targetZ)),
       });
     }
 
@@ -626,7 +637,19 @@ function Band({
               // Pause engine, pertahankan gambar yang sedang tampil
               pausePixelEngine();
 
-              drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation())));
+              // Hitung titik drag di bidang kedalaman kartu (anti-lompat)
+              const cam = e.camera;
+              vec.set(
+                (e.clientX / window.innerWidth) * 2 - 1,
+                -(e.clientY / window.innerHeight) * 2 + 1,
+                0.5
+              ).unproject(cam);
+              dir.copy(vec).sub(cam.position).normalize();
+              const cardZ = card.current ? card.current.translation().z : 0;
+              const distance = (cardZ - cam.position.z) / dir.z;
+              vec.copy(cam.position).add(dir.multiplyScalar(distance));
+
+              drag(new THREE.Vector3().copy(vec).sub(card.current.translation()));
             }}
           >
             <mesh geometry={nodes.card.geometry}>
