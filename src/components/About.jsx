@@ -12,7 +12,7 @@ import {
 } from "react";
 
 import "./About.css";
-import LazyMount from "./LazyMount";
+import Reveal from "./Reveal";
 import TechText from "./TechText";
 import MagicBento from "./MagicBento";
 const Lanyard = lazy(() => import("./Lanyard"));
@@ -323,35 +323,7 @@ export default function About({
                         BASED IN
                     ================================================= */}
 
-                    <motion.div
-                      className="about-meta-item"
-
-                      initial={{
-                        opacity: 0,
-                        y: 25,
-                      }}
-
-                      whileInView={{
-                        opacity: 1,
-                        y: 0,
-                      }}
-
-                      viewport={{
-                        once: true,
-                        amount: 0.3,
-                      }}
-
-                      transition={{
-                        duration: 0.7,
-                        delay: 0.15,
-                        ease: [
-                          0.16,
-                          1,
-                          0.3,
-                          1,
-                        ],
-                      }}
-                    >
+                    <Reveal className="about-meta-item" y={25} delay={0.15}>
 
                       <GlareCard
                         className="about-meta-glare"
@@ -371,42 +343,14 @@ export default function About({
 
                       </GlareCard>
 
-                    </motion.div>
+                    </Reveal>
 
 
                     {/* =================================================
                         FOCUS
                     ================================================= */}
 
-                    <motion.div
-                      className="about-meta-item"
-
-                      initial={{
-                        opacity: 0,
-                        y: 25,
-                      }}
-
-                      whileInView={{
-                        opacity: 1,
-                        y: 0,
-                      }}
-
-                      viewport={{
-                        once: true,
-                        amount: 0.3,
-                      }}
-
-                      transition={{
-                        duration: 0.7,
-                        delay: 0.3,
-                        ease: [
-                          0.16,
-                          1,
-                          0.3,
-                          1,
-                        ],
-                      }}
-                    >
+                    <Reveal className="about-meta-item" y={25} delay={0.3}>
 
                       <GlareCard
                         className="about-meta-glare"
@@ -426,42 +370,14 @@ export default function About({
 
                       </GlareCard>
 
-                    </motion.div>
+                    </Reveal>
 
 
                     {/* =================================================
                         STATUS
                     ================================================= */}
 
-                    <motion.div
-                      className="about-meta-item"
-
-                      initial={{
-                        opacity: 0,
-                        y: 25,
-                      }}
-
-                      whileInView={{
-                        opacity: 1,
-                        y: 0,
-                      }}
-
-                      viewport={{
-                        once: true,
-                        amount: 0.3,
-                      }}
-
-                      transition={{
-                        duration: 0.7,
-                        delay: 0.45,
-                        ease: [
-                          0.16,
-                          1,
-                          0.3,
-                          1,
-                        ],
-                      }}
-                    >
+                    <Reveal className="about-meta-item" y={25} delay={0.45}>
 
                       <GlareCard
                         className="about-meta-glare"
@@ -481,7 +397,7 @@ export default function About({
 
                       </GlareCard>
 
-                    </motion.div>
+                    </Reveal>
 
                   </div>
 
@@ -580,8 +496,7 @@ export default function About({
 
                       <div className="about-lanyard">
 
-                        <LazyMount minHeight={300} fallback={<div className="w-full h-full min-h-[300px]" />}>
-<Suspense fallback={<div className="w-full h-full min-h-[300px]" />}>
+                        <Suspense fallback={<div className="w-full h-full min-h-[300px]" />}>
                           <Lanyard
                             key="lanyard-mobile"
                             position={[
@@ -606,7 +521,6 @@ export default function About({
                             cardScale={3.4}
                           />
                         </Suspense>
-</LazyMount>
 
                       </div>
 
@@ -732,8 +646,7 @@ export default function About({
 
                       <div className="about-lanyard">
 
-                        <LazyMount minHeight={300} fallback={<div className="w-full h-full min-h-[300px]" />}>
-<Suspense fallback={<div className="w-full h-full min-h-[300px]" />}>
+                        <Suspense fallback={<div className="w-full h-full min-h-[300px]" />}>
                           <Lanyard
                             key="lanyard-desktop"
                             position={[
@@ -758,7 +671,6 @@ export default function About({
                             cardScale={3.1}
                           />
                         </Suspense>
-</LazyMount>
 
                       </div>
 

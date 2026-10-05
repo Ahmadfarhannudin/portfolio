@@ -404,7 +404,7 @@
   width: 100%;
 
   /*
-   * Sedikit lebih tinggi agar globe 470px
+   * Sedikit lebih tinggi agar globe 560px
    * punya ruang kosong atas/bawah.
    */
   height: 560px;
@@ -440,11 +440,11 @@
 .wishlist-globe {
   position: relative;
 
-  width: 470px;
+  width: 560px;
 
-  height: 470px;
+  height: 560px;
 
-  flex: 0 0 470px;
+  flex: 0 0 560px;
 
   display: flex;
 
@@ -874,7 +874,7 @@
   .wishlist-globe-area {
     width: 100%;
 
-    height: 400px;
+    height: 460px;
 
     margin-top: 15px;
   }
@@ -884,9 +884,9 @@
   ------------------------------------------------------- */
 
   .wishlist-globe {
-    width: 350px;
+    width: 410px;
 
-    height: 350px;
+    height: 410px;
 
     flex-basis: 350px;
 

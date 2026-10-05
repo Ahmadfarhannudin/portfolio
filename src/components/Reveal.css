@@ -1,0 +1,29 @@
+/* =========================================================
+   Reveal — CSS-only entrance animation.
+   opacity + translateY jalan di compositor (GPU),
+   tidak membebani main thread seperti animasi JS.
+   Hormati prefers-reduced-motion.
+========================================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 24px));
+  transition:
+    opacity 0.7s ease var(--reveal-delay, 0s),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
