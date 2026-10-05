@@ -358,6 +358,14 @@ class App {
   constructor(container, { items, bend, textColor = '#ffffff', borderRadius = 0, font = 'bold 30px Figtree', scrollSpeed = 2, scrollEase = 0.05 } = {}) {
     document.documentElement.classList.remove('no-js');
     this.container = container;
+    this.isVisible = true;
+    if (typeof IntersectionObserver !== 'undefined') {
+      this.io = new IntersectionObserver(
+        (entries) => { this.isVisible = entries[0].isIntersecting; },
+        { rootMargin: '200px' }
+      );
+      this.io.observe(container);
+    }
     this.scrollSpeed = scrollSpeed;
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
     this.onCheckDebounce = debounce(this.onCheck, 200);
@@ -471,6 +479,10 @@ class App {
     }
   }
   update() {
+    if (!this.isVisible) {
+      this.raf = window.requestAnimationFrame(this.update.bind(this));
+      return;
+    }
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
     if (this.medias) {
@@ -499,6 +511,7 @@ class App {
     this.container?.addEventListener('keydown', this.boundOnKeyDown);
   }
   destroy() {
+    if (this.io) this.io.disconnect();
     window.cancelAnimationFrame(this.raf);
     window.removeEventListener('resize', this.boundOnResize);
     window.removeEventListener('mousewheel', this.boundOnWheel);

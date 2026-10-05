@@ -19,6 +19,10 @@
   isolation: isolate;
 
   box-sizing: border-box;
+
+  /* Perf: skip render saat di luar viewport (tanpa ubah tampilan) */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
 }
 
 

@@ -1,6 +1,10 @@
 .contact-section {
   padding: 50px 20px 20px;
   position: relative;
+
+  /* Perf: skip render saat di luar viewport (tanpa ubah tampilan) */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
 }
 
 .contact-container {

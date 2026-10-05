@@ -654,6 +654,21 @@ export function Globe3D({
 
   const closeFocus = useCallback(() => setFocus(null), []);
 
+  /* Pause render loop saat globe di luar viewport (hemat GPU/HP) */
+  const containerRef = useRef(null);
+  const [inView, setInView] = useState(true);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "200px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   // Esc untuk keluar dari fokus
   useEffect(() => {
     if (!focus) return;
@@ -663,11 +678,12 @@ export function Globe3D({
   }, [focus, closeFocus]);
 
   return (
-    <div className={`globe3d-container ${className}`}>
+    <div ref={containerRef} className={`globe3d-container ${className}`}>
       {!loaded && <GlobeLoading />}
 
       <Canvas
         dpr={[1, 1.25]}
+        frameloop={inView ? "always" : "never"}
         style={{ width: "100%", height: "100%", display: "block" }}
         resize={{ scroll: false, debounce: 0 }}
         camera={{ position: [0, 0, finalConfig.homeDistance], fov: 38, near: 0.1, far: 100 }}

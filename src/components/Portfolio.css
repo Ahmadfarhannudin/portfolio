@@ -6,6 +6,10 @@
   align-items: center;
   justify-content: center;
   overflow: visible;
+
+  /* Perf: skip render saat di luar viewport (tanpa ubah tampilan) */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
 }
 
 .portfolio-container {
