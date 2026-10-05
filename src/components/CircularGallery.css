@@ -37,10 +37,10 @@
 
 .circular-gallery-section {
   width: 100%;
-  height: 620px;
+  height: 560px;
 
   /* Hilangkan jarak/frame */
-  margin-top: 28px;
+  margin-top: 12px;
   padding: 0;
 
   position: relative;
@@ -128,7 +128,7 @@
 
 @media (max-width: 1024px) {
   .circular-gallery-section {
-    height: 540px;
+    height: 480px;
     margin-top: 24px;
   }
 }
@@ -141,7 +141,7 @@
 @media (max-width: 768px) {
   .circular-gallery-section {
     width: 100%;
-    height: 380px;
+    height: 300px;
 
     margin-top: 20px;
     padding: 0;
@@ -175,7 +175,7 @@
 
 @media (max-width: 480px) {
   .circular-gallery-section {
-    height: 420px;
+    height: 340px;
     margin-top: 16px;
   }
 
