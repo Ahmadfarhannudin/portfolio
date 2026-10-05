@@ -279,6 +279,27 @@
   .loading-portal-ring--inner {
     animation-duration: 10s;
   }
+
+  /* Solid color, tanpa gradient-clip (repaint 15x jauh lebih murah) */
+  .loading-greeting {
+    background: none;
+    -webkit-text-fill-color: #e2e8f0;
+    color: #e2e8f0;
+  }
+  .loading-bar-labels {
+    background: none;
+    -webkit-text-fill-color: #94a3b8;
+    color: #94a3b8;
+  }
+  /* Kurangi animasi UFO di HP: matikan kedip lampu */
+  .loading-ufo-light {
+    animation: none;
+    opacity: 0.8;
+  }
+  /* Exit lebih cepat di HP */
+  .loading-screen {
+    transition: opacity 0.45s ease, transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
