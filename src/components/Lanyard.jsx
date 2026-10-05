@@ -331,6 +331,10 @@ function Band({
   // ── Pause flag: true = engine tidak boleh tick ─────────────────────────
   const pixelPausedRef = useRef(false);
 
+  // ── Rope geometry skip: jangan rebuild meshline kalau tali nyaris diam ──
+  const lastRopePosRef = useRef(null);
+  const ropeFrameRef = useRef(0);
+
   // ── Settle sensor state ────────────────────────────────────────────────
   const waitingToSettleRef  = useRef(false);
   const settleFrameCountRef = useRef(0);
@@ -515,11 +519,21 @@ function Band({
           delta * (minSpeed + clampedDist * (maxSpeed - minSpeed))
         );
       });
-      curve.points[0].copy(j3.current.translation());
-      curve.points[1].copy(j2.current.lerped ?? j2.current.translation());
-      curve.points[2].copy(j1.current.lerped ?? j1.current.translation());
-      curve.points[3].copy(fixed.current.translation());
-      band.current.geometry.setPoints(curve.getPoints(12));
+      // Skip rebuild geometri tali kalau posisi nyaris tidak berubah (hemat GPU)
+      const jp = j3.current.translation();
+      const last = lastRopePosRef.current;
+      const moved = !last || Math.abs(jp.x - last.x) + Math.abs(jp.y - last.y) + Math.abs(jp.z - last.z) > 0.004;
+      ropeFrameRef.current = (ropeFrameRef.current + 1) % 2;
+      // Di mobile: update geometri tiap 2 frame saja saat bergerak
+      const doUpdate = moved && (!isMobile || ropeFrameRef.current === 0 || !last);
+      if (doUpdate) {
+        curve.points[0].copy(jp);
+        curve.points[1].copy(j2.current.lerped ?? j2.current.translation());
+        curve.points[2].copy(j1.current.lerped ?? j1.current.translation());
+        curve.points[3].copy(fixed.current.translation());
+        band.current.geometry.setPoints(curve.getPoints(isMobile ? 8 : 12));
+        lastRopePosRef.current = { x: jp.x, y: jp.y, z: jp.z };
+      }
       if (card.current) {
         ang.copy(card.current.angvel());
         rot.copy(card.current.rotation());

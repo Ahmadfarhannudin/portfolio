@@ -23,6 +23,14 @@ import "./ui/UnpublishedModal.css";
 
 import "./PortfolioContent.css";
 
+import certAcad from "../assets/portfolio/sertifikat/acad.jpg";
+import certAI from "../assets/portfolio/sertifikat/AI.PNG";
+import certOxigen1 from "../assets/portfolio/sertifikat/oxigen1.jpg";
+import certOxigen2 from "../assets/portfolio/sertifikat/oxigen2.jpg";
+import certOxigen3 from "../assets/portfolio/sertifikat/oxigen3.jpg";
+import awardLsp from "../assets/portfolio/sertifikat/lsp.png";
+import awardUjikom from "../assets/portfolio/sertifikat/ujikom.png";
+
 function isUnpublishedUrl(url) {
   if (!url) return true;
   const v = String(url).trim();
@@ -38,19 +46,19 @@ const CERTIFICATES_DATA = [
     id: "ACAD-SCIRT",
     title: "Acad Scirt submit 2025",
     image:
-      "src/assets/portfolio/sertifikat/acad.jpg",
+      certAcad,
   },
   {
     id: "Sertifikat AI Ready ASEAN Goggle",
     title: "Sertifikat AI Ready ASEAN Goggle",
     image:
-      "src/assets/portfolio/sertifikat/AI.PNG",
+      certAI,
   },
   {
     id: "Sertifikat Peserta Oxigen",
     title: "Sertifikat Peserta Oxigen",
     image:
-      "src/assets/portfolio/sertifikat/oxigen1.jpg",
+      certOxigen1,
   },
 ];
 
@@ -63,25 +71,25 @@ const AWARDS_DATA = [
     id: "Lembaga Sertifikasi Profesi (LSP)",
     title: "Lembaga Sertifikasi Profesi (LSP)",
     image:
-      "src/assets/portfolio/sertifikat/lsp.png",
+      awardLsp,
   },
     {
     id: "Sertifikat Uji Kompetensi SMK",
     title: "Sertifikat Uji Kompetensi SMK",
     image:
-      "src/assets/portfolio/sertifikat/ujikom.png",
+      awardUjikom,
   },
   {
     id: "Best Tech Explorer",
     title: "Best Tech Explorer",
     image:
-      "src/assets/portfolio/sertifikat/oxigen2.jpg",
+      certOxigen2,
   },
   {
     id: "Best Project Software",
     title: "Best Project divisi Software",
     image:
-      "src/assets/portfolio/sertifikat/oxigen3.jpg",
+      certOxigen3,
   },
 ];
 
