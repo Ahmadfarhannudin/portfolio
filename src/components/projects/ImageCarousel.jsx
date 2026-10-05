@@ -788,7 +788,7 @@ export default function ImageCarousel({
                     alt={`${alt} ${
                       index + 1
                     }`}
-                    loading="eager"
+                    loading="lazy"
                     draggable={false}
                   />
                 </div>
@@ -1013,6 +1013,7 @@ export default function ImageCarousel({
                   alt={`${alt} ${
                     lightboxIndex + 1
                   }`}
+                  loading="lazy"
                   draggable={false}
                 />
 

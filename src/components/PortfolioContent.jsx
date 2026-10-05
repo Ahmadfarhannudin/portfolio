@@ -471,7 +471,7 @@ function ImagePreviewLightbox({ list, index, onClose, onPrev, onNext }) {
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           onClick={(e) => e.stopPropagation()}
         >
-          <img src={item.image} alt={item.title} draggable={false} />
+          <img src={item.image} alt={item.title} draggable={false} loading="lazy" decoding="async" />
 
           <div className="image-lightbox-info">
             <span>{item.title}</span>

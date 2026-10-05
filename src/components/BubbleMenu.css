@@ -115,9 +115,9 @@
     inset 0 1px 0
       rgba(255, 255, 255, 0.08);
 
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(8px);
 
-  -webkit-backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(8px);
 
   overflow: hidden;
 
@@ -750,8 +750,11 @@
 
 @media (pointer: coarse) {
   .bubble-menu-inline .pill-link {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow:
+      0 6px 16px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
   }
 }
 

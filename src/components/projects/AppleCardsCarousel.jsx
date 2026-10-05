@@ -536,6 +536,8 @@ function Carousel({
                     alt={
                       activeCard.title
                     }
+                    loading="lazy"
+                    decoding="async"
                   />
 
                 </div>

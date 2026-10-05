@@ -88,8 +88,9 @@ const SpecularBorder = ({
     const fx = fxRef.current;
     if (!container || !fx) return;
 
-    const dpr = window.devicePixelRatio || 1;
-    const renderer = new Renderer({ alpha: true, premultipliedAlpha: true, antialias: true, dpr });
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    const dpr = isCoarsePointer ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
+    const renderer = new Renderer({ alpha: true, premultipliedAlpha: true, antialias: !isCoarsePointer, dpr });
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);

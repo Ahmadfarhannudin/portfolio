@@ -28,7 +28,9 @@ const Ribbons = ({
     if (!container) return;
     if (container.querySelector('canvas')) return;
 
-    const renderer = new Renderer({ dpr: Math.min(window.devicePixelRatio || 1, 2), alpha: true });
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    const dpr = isCoarsePointer ? 1 : Math.min(window.devicePixelRatio || 1, 2);
+    const renderer = new Renderer({ dpr, alpha: true });
     const gl = renderer.gl;
     if (Array.isArray(backgroundColor) && backgroundColor.length === 4) {
       gl.clearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);

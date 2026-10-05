@@ -202,7 +202,7 @@ function GlobeMarker({ marker, radius, markerSize, isFocused, onClick, onHover }
           style={{ pointerEvents: "none" }}
         >
           <div className="globe-marker-tooltip">
-            {marker.image && <img src={marker.image} alt="" />}
+            {marker.image && <img src={marker.image} alt="" loading="lazy" decoding="async" />}
             <span>{marker.label}</span>
           </div>
         </Html>
@@ -696,7 +696,7 @@ export function Globe3D({
       {/* Kartu info marker */}
       {focus && (
         <div className="globe-focus-card" key={focus.marker.id ?? focus.marker.label}>
-          {focus.marker.image && <img src={focus.marker.image} alt={focus.marker.label} />}
+          {focus.marker.image && <img src={focus.marker.image} alt={focus.marker.label} loading="lazy" decoding="async" />}
 
           <div className="globe-focus-text">
             {focus.marker.location && <small>{focus.marker.location}</small>}

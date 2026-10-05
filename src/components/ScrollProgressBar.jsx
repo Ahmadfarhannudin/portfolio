@@ -15,6 +15,18 @@ export default function ScrollProgressBar() {
 
   useEffect(() => {
     let mounted = true;
+    let visible = true;
+
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible && !rafRef.current) {
+        rafRef.current = requestAnimationFrame(animate);
+      }
+    });
+
+    if (barRef.current) {
+      intersectionObserver.observe(barRef.current.parentElement);
+    }
 
     // =========================================================
     // GET SCROLL PROGRESS
@@ -90,8 +102,12 @@ export default function ScrollProgressBar() {
           `scaleX(${next})`;
       }
 
-      rafRef.current =
-        requestAnimationFrame(animate);
+      if (visible) {
+        rafRef.current =
+          requestAnimationFrame(animate);
+      } else {
+        rafRef.current = null;
+      }
     };
 
     // =========================================================
@@ -174,6 +190,8 @@ export default function ScrollProgressBar() {
           onScroll
         );
       }
+
+      intersectionObserver.disconnect();
 
       if (rafRef.current) {
         cancelAnimationFrame(

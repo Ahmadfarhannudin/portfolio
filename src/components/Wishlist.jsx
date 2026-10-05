@@ -309,7 +309,7 @@ function DraggablePolaroid({
       }}
     >
       <div className="wishlist-polaroid-photo" style={{ position: "relative" }}>
-        <img src={item.image} alt={item.title} draggable="false" />
+        <img src={item.image} alt={item.title} draggable="false" loading="lazy" decoding="async" />
         <div className="wishlist-photo-overlay" />
         <motion.div
           aria-hidden

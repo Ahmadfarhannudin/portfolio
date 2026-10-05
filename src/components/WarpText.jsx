@@ -382,7 +382,8 @@ const WarpText = ({
       const rect = container.getBoundingClientRect();
       if (rect.width <= 0 || rect.height <= 0) return;
 
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+      const dpr = isCoarsePointer ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
       const textCanvas = buildTextCanvas({
         container,
         width: rect.width,
@@ -400,7 +401,8 @@ const WarpText = ({
       const rect = container.getBoundingClientRect();
       if (rect.width <= 0 || rect.height <= 0) return;
 
-      renderer.dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+      renderer.dpr = isCoarsePointer ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
       renderer.setSize(rect.width, rect.height);
       program.uniforms.uResolution.value[0] = gl.drawingBufferWidth;
       program.uniforms.uResolution.value[1] = gl.drawingBufferHeight;
