@@ -1088,9 +1088,7 @@
      * width: layout.stageWidth
      */
 
-    width: fit-content !important;
-
-    max-width: none !important;
+    max-width: 100%;
 
     margin:
       10px
