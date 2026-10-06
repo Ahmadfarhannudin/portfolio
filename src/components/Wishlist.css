@@ -407,7 +407,7 @@
    * Sedikit lebih tinggi agar globe 560px
    * punya ruang kosong atas/bawah.
    */
-  height: 560px;
+  height: 680px;
 
   min-width: 0;
 
@@ -440,11 +440,11 @@
 .wishlist-globe {
   position: relative;
 
-  width: 560px;
+  width: 680px;
 
-  height: 560px;
+  height: 680px;
 
-  flex: 0 0 560px;
+  flex: 0 0 680px;
 
   display: flex;
 
@@ -664,15 +664,15 @@
   }
 
   .wishlist-globe-area {
-    height: 520px;
+    height: 620px;
   }
 
   .wishlist-globe {
-    width: 430px;
+    width: 520px;
 
-    height: 430px;
+    height: 520px;
 
-    flex-basis: 430px;
+    flex-basis: 520px;
   }
 
   .wishlist-globe-label {
@@ -735,17 +735,17 @@
   }
 
   .wishlist-globe-area {
-    height: 500px;
+    height: 590px;
 
     margin-top: 5px;
   }
 
   .wishlist-globe {
-    width: 430px;
+    width: 520px;
 
-    height: 430px;
+    height: 520px;
 
-    flex-basis: 430px;
+    flex-basis: 520px;
   }
 
   .wishlist-globe-label {
@@ -874,7 +874,7 @@
   .wishlist-globe-area {
     width: 100%;
 
-    height: 460px;
+    height: 540px;
 
     margin-top: 15px;
   }
@@ -884,11 +884,11 @@
   ------------------------------------------------------- */
 
   .wishlist-globe {
-    width: 410px;
+    width: 490px;
 
-    height: 410px;
+    height: 490px;
 
-    flex-basis: 350px;
+    flex-basis: 420px;
 
     max-width: 100%;
   }
@@ -943,15 +943,15 @@
   }
 
   .wishlist-globe-area {
-    height: 370px;
+    height: 520px;
   }
 
   .wishlist-globe {
-    width: 320px;
+    width: 380px;
 
-    height: 320px;
+    height: 380px;
 
-    flex-basis: 320px;
+    flex-basis: 380px;
   }
 
   .wishlist-globe-label {
@@ -974,15 +974,15 @@
   }
 
   .wishlist-globe-area {
-    height: 340px;
+    height: 390px;
   }
 
   .wishlist-globe {
-    width: 290px;
+    width: 340px;
 
-    height: 290px;
+    height: 340px;
 
-    flex-basis: 290px;
+    flex-basis: 340px;
   }
 }
 

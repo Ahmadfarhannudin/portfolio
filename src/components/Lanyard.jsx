@@ -254,7 +254,7 @@ export default function Lanyard({
       >
         <PauseWhenOffscreen active={inView} />
         <ambientLight intensity={Math.PI} />
-        <Physics gravity={gravity} timeStep={1 / 60} paused={!inView}>
+        <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60} paused={!inView}>
           <Band
             isMobile={isMobile}
             inView={inView}

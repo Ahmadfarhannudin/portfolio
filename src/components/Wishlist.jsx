@@ -340,7 +340,7 @@ function DraggablePolaroid({
 function WishlistGlobe({ dragActive }) {
   const config = useMemo(
     () => ({
-      radius: 1.7,
+      radius: 1.85,
       globeColor: "#ffffff",
       textureUrl:
         "https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg",
