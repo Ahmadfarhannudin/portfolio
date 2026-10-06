@@ -1,16 +1,10 @@
-import { useEffect, useMemo, useRef, useState, lazy, Suspense } from "react";
-import { motion, useMotionValue, useSpring, useTransform,  } from "./motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "./motion";
 import { MapPin } from "lucide-react";
-
-const Globe3D = lazy(() => import("./ui/3d-globe").then(m => ({ default: m.Globe3D })));
 import "./Wishlist.css";
-import LazyMount from "./LazyMount";
 
 /* =========================================================
-   SINGLE SOURCE OF TRUTH
-   Polaroid + marker globe dibuat dari data yang sama,
-   jadi isi wishlist dan globe selalu cocok.
-   lat/lng juga dipakai tombol "Lihat di Maps".
+   WISHLIST DATA
 ========================================================= */
 
 import allianzArena from "../assets/portfolio/wislist/Allianz Arena jerman.jfif";
@@ -33,44 +27,25 @@ const WISHLIST = [
   { id: 7, title: "Gunung Fuji, Jepang", location: "Gunung Fuji, Jepang", image: gunungFuji, rotate: -3, lat: 35.3606, lng: 138.7274, mapsQuery: "Gunung Fuji" },
   { id: 8, title: "Banda Neira, Maluku, Indonesia", location: "Banda Neira, Maluku, Indonesia", image: bandaNeira, rotate: 4, lat: -4.5219, lng: 129.8967, mapsQuery: "Banda Neira" },
   { id: 9, title: "Allianz Arena, Jerman", location: "Allianz Arena, München, Jerman", image: allianzArena, rotate: -5, lat: 48.2188, lng: 11.6247, mapsQuery: "Allianz Arena" },
-].map((item) => ({
-  ...item,
-  thumb: item.image,
-}));
-
-/* Urutan rute di globe (berdasarkan id) */
-const ROUTE_ORDER = [9, 4, 3, 7, 8, 5, 6, 1, 2];
-
-const wishlistMarkers = ROUTE_ORDER.map((id) => {
-  const item = WISHLIST.find((w) => w.id === id);
-  return {
-    id: item.id,
-    lat: item.lat,
-    lng: item.lng,
-    label: item.title,
-    location: item.location,
-    mapsQuery: item.mapsQuery, // baris baru
-    mapsUrl: item.mapsUrl,     // opsional, lihat bagian 4
-    image: item.thumb,
-  };
-});
-
-// Arc menyambung berurutan dan menutup loop di akhir
-const wishlistArcs = wishlistMarkers.map((_, i) => [
-  i,
-  (i + 1) % wishlistMarkers.length,
-]);
+];
 
 /* =========================================================
    GRID LAYOUT GENERATOR
-   Jumlah posisi selalu sama dengan jumlah kartu, lebar stage
-   dihitung dari kartu sehingga tidak melebar ke area globe.
 ========================================================= */
 
 const CARD_RATIO = 1.32; // tinggi kartu = lebar * rasio (sesuaikan bila CSS berbeda)
 const JITTER = [
-  [0, 4], [4, -4], [-3, 3], [4, -3], [-4, 4],
-  [3, -4], [-3, 3], [4, -4], [0, 3],
+  [-2, 3],
+  [2, -2],
+  [-2, 2],
+
+  [2, -3],
+  [-2, 3],
+  [2, -2],
+
+  [-2, 2],
+  [2, -3],
+  [-1, 3],
 ];
 
 function buildLayout({ cols, cardWidth, gapX, rowPitch, count = WISHLIST.length }) {
@@ -97,11 +72,56 @@ function buildLayout({ cols, cardWidth, gapX, rowPitch, count = WISHLIST.length 
 }
 
 const LAYOUTS = {
-  desktop: buildLayout({ cols: 3, cardWidth: 150, gapX: 24, rowPitch: 212 }),
-  laptop: buildLayout({ cols: 3, cardWidth: 135, gapX: 22, rowPitch: 192 }),
-  tablet: buildLayout({ cols: 3, cardWidth: 160, gapX: 24, rowPitch: 224 }),
-  mobile: buildLayout({ cols: 2, cardWidth: 140, gapX: 22, rowPitch: 200 }),
-  smallMobile: buildLayout({ cols: 2, cardWidth: 118, gapX: 18, rowPitch: 170 }),
+  /*
+   * DESKTOP
+   * 3 kolom dengan jarak yang seimbang.
+   */
+  desktop: buildLayout({
+    cols: 3,
+    cardWidth: 175,
+    gapX: 52,
+    rowPitch: 265,
+  }),
+
+  /*
+   * LAPTOP
+   */
+  laptop: buildLayout({
+    cols: 3,
+    cardWidth: 158,
+    gapX: 40,
+    rowPitch: 235,
+  }),
+
+  /*
+   * TABLET
+   */
+  tablet: buildLayout({
+    cols: 3,
+    cardWidth: 150,
+    gapX: 30,
+    rowPitch: 225,
+  }),
+
+  /*
+   * MOBILE
+   */
+  mobile: buildLayout({
+    cols: 2,
+    cardWidth: 140,
+    gapX: 24,
+    rowPitch: 200,
+  }),
+
+  /*
+   * SMALL MOBILE
+   */
+  smallMobile: buildLayout({
+    cols: 2,
+    cardWidth: 118,
+    gapX: 18,
+    rowPitch: 170,
+  }),
 };
 
 /* =========================================================
@@ -188,7 +208,6 @@ function DraggablePolaroid({
   cardWidth,
   stageWidth,
   stageHeight,
-  onDragStateChange,
 }) {
   const [isDragging, setIsDragging] = useState(false);
   const cardRef = useRef(null);
@@ -290,7 +309,6 @@ function DraggablePolaroid({
         setIsDragging(true);
         resetTilt();
         lockPage();
-        onDragStateChange?.(true);
         window.getSelection?.()?.removeAllRanges();
       }}
       onDrag={(_, info) => {
@@ -300,7 +318,6 @@ function DraggablePolaroid({
       onDragEnd={() => {
         setIsDragging(false);
         unlockPage();
-        onDragStateChange?.(false);
         swing.set(item.rotate);
       }}
     >
@@ -333,77 +350,15 @@ function DraggablePolaroid({
 }
 
 /* =========================================================
-   GLOBE SECTION
-   dragActive = true → pointer-events globe dimatikan
-========================================================= */
-
-function WishlistGlobe({ dragActive }) {
-  const config = useMemo(
-    () => ({
-      radius: 1.85,
-      globeColor: "#ffffff",
-      textureUrl:
-        "https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg",
-      bumpMapUrl:
-        "https://threejs.org/examples/textures/planets/earth_normal_2048.jpg",
-      showAtmosphere: false,
-      atmosphereIntensity: 0,
-      bumpScale: 0.045,
-      autoRotateSpeed: 0.18,
-      enableZoom: true,
-      minDistance: 4.3,
-      maxDistance: 7,
-      backgroundColor: null,
-      markerSize: 0.045,
-
-      showArcs: true,
-      arcs: wishlistArcs,
-      arcColor: "#38bdf8",
-      arcOpacity: 0.45,
-      arcHeight: 0.38,
-      arcSpeed: 0.28,
-      arcPulseColor: "#7fe3ff",
-      arcPulseSize: 0.04,
-      arcEndpointGlow: true,
-      arcEndpointGlowColor: "#7fe3ff",
-      arcEndpointGlowSpeed: 1.1,
-    }),
-    []
-  );
-
-  return (
-    <motion.div
-      className="wishlist-globe-area"
-      style={{ pointerEvents: dragActive ? "none" : "auto" }}
-      initial={{ opacity: 0, x: 80 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <div className="wishlist-globe">
-        <LazyMount minHeight={350} fallback={<div className="w-full h-full min-h-[350px]" />}>
-<Suspense fallback={<div className="w-full h-full min-h-[350px]" />}>
-          <Globe3D markers={wishlistMarkers} config={config} />
-        </Suspense>
-</LazyMount>
-      </div>
-    </motion.div>
-  );
-}
-
-/* =========================================================
    MAIN WISHLIST
 ========================================================= */
 
 export default function Wishlist() {
   const layout = useResponsiveLayout();
-  const [dragActive, setDragActive] = useState(false);
 
   return (
-    <>
-      <section className="wishlist-section" id="wishlist">
-        <div className="wishlist-container">
-        {/* LEFT CONTENT */}
+    <section className="wishlist-section" id="wishlist">
+      <div className="wishlist-container">
         <div className="wishlist-content">
           <motion.div
             className="wishlist-eyebrow"
@@ -435,7 +390,6 @@ export default function Wishlist() {
             style={{
               position: "relative",
               width: layout.stageWidth,
-              maxWidth: "100%",
               height: layout.stageHeight,
               overflow: "visible",
             }}
@@ -452,7 +406,6 @@ export default function Wishlist() {
                 cardWidth={layout.cardWidth}
                 stageWidth={layout.stageWidth}
                 stageHeight={layout.stageHeight}
-                onDragStateChange={setDragActive}
               />
             ))}
 
@@ -461,11 +414,7 @@ export default function Wishlist() {
             </div>
           </motion.div>
         </div>
-
-        {/* RIGHT GLOBE */}
-        <WishlistGlobe dragActive={dragActive} />
       </div>
     </section>
-    </>
   );
 }

@@ -1,8 +1,6 @@
 import {
   useState,
   useRef,
-  lazy,
-  Suspense,
 } from "react";
 
 import { motion, useReducedMotion,  } from "./motion";
@@ -10,24 +8,11 @@ import { motion, useReducedMotion,  } from "./motion";
 import BubbleMenu from "./BubbleMenu";
 import PortfolioContent from "./PortfolioContent";
 import DriftWall from "./DriftWall";
-const CircularGallery = lazy(() => import("./CircularGallery"));
+import FlexCarousel from "./FlexCarousel";
 import Folder from "./Folder";
 import Wishlist from "./Wishlist";
 
-import c1 from "../assets/portfolio/galery/circular/barudak cuanki.jpeg";
-import c2 from "../assets/portfolio/galery/circular/barudak esemka.jpeg";
-import c3 from "../assets/portfolio/galery/circular/biasa si persib.jpeg";
-import c4 from "../assets/portfolio/galery/circular/hoki juara 1.jpeg";
-import c5 from "../assets/portfolio/galery/circular/hunting buku.jpeg";
-import c6 from "../assets/portfolio/galery/circular/keluarga alit.jpeg";
-import c7 from "../assets/portfolio/galery/circular/lagi ngopi.jpeg";
-import c8 from "../assets/portfolio/galery/circular/lomba mamasakan.jpeg";
-import c9 from "../assets/portfolio/galery/circular/muncak dulu.jpeg";
-import c10 from "../assets/portfolio/galery/circular/oxigen dulu.jpeg";
-import c11 from "../assets/portfolio/galery/circular/si persib.jpeg";
-import c12 from "../assets/portfolio/galery/circular/suntikan persib.jpeg";
-import c13 from "../assets/portfolio/galery/circular/NFE.jpeg";
-import c14 from "../assets/portfolio/galery/circular/wisuda esemka.jpeg";
+
 
 import mBiasa from "../assets/portfolio/galery/masonry/biasa.jpeg";
 import mBlueWhite from "../assets/portfolio/galery/masonry/blue and white.jpeg";
@@ -190,6 +175,14 @@ export default function Portfolio({
   const driftWallRef =
     useRef(null);
 
+
+  const carouselItems = [
+    { src: mBiasa, alt: "biasa", title: "biasa" },
+    { src: mBlueWhite, alt: "blue and white", title: "blue and white" },
+    { src: mBraga1, alt: "braga 1", title: "braga 1" },
+    { src: mBraga2, alt: "braga 2", title: "braga 2" },
+    { src: mBuku, alt: "buku", title: "buku" },
+  ];
 
   /* =======================================================
      FOLDER
@@ -418,41 +411,15 @@ export default function Portfolio({
               amount={0.15}
             >
 
-              <div className="circular-gallery-section">
-
-                <LazyMount minHeight={256} fallback={<div className="w-full h-64" />}>
-<Suspense fallback={<div className="w-full h-64" />}>
-                  <CircularGallery
-                    bend={3}
-                    textColor="#ffffff"
-                    borderRadius={0.05}
-                    scrollSpeed={2}
-                    scrollEase={0.05}
-                    items={[
-                      { image: c1, text: 'barudak cuanki' },
-                      { image: c2, text: 'barudak esemka' },
-                      { image: c3, text: 'biasa si persib' },
-                      { image: c4, text: 'hoki juara 1' },
-                      { image: c5, text: 'hunting buku' },
-                      { image: c6, text: 'keluarga alit' },
-                      { image: c7, text: 'lagi ngopi' },
-                      { image: c8, text: 'lomba mamasakan' },
-                      { image: c9, text: 'muncak dulu' },
-                      { image: c10, text: 'oxigen dulu' },
-                      { image: c11, text: 'si persib' },
-                      { image: c12, text: 'suntikan persib' },
-                      { image: c13, text: 'NFE' },
-                      { image: c14, text: 'wisuda esemka' },
-                    ]}
-                  />
-                </Suspense>
-</LazyMount>
-
-                <p className="circular-gallery-hint">
-                  drag • scroll • arrow keys
-                </p>
-
-              </div>
+              <FlexCarousel
+                items={carouselItems}
+                preset="liquid"
+                intro="rise"
+                cardHeight={0.55}
+                gap={12}
+                captions={true}
+                captureWheel={true}
+              />
             </SlideIn>
 
           </>

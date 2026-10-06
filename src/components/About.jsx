@@ -176,15 +176,15 @@ export default function About({
 
           <MagicBento
             textAutoHide={false}
-            enableStars={!isMobile}
-            enableSpotlight={!isMobile}
-            enableBorderGlow={!isMobile}
+            enableStars={false}
+            enableSpotlight={false}
+            enableBorderGlow={false}
             disableAnimations={false}
             spotlightRadius={350}
-            particleCount={isMobile ? 0 : 10}
+            particleCount={0}
             enableTilt={false}
             glowColor="37, 99, 235"
-            clickEffect={!isMobile}
+            clickEffect={false}
             enableMagnetism={false}
           >
 
@@ -327,6 +327,7 @@ export default function About({
 
                       <GlareCard
                         className="about-meta-glare"
+                        disableHover
                       >
 
                         <div className="about-meta-card">
@@ -354,6 +355,7 @@ export default function About({
 
                       <GlareCard
                         className="about-meta-glare"
+                        disableHover
                       >
 
                         <div className="about-meta-card">
@@ -381,6 +383,7 @@ export default function About({
 
                       <GlareCard
                         className="about-meta-glare"
+                        disableHover
                       >
 
                         <div className="about-meta-card">

@@ -5,11 +5,13 @@ export default function GlareCard({
   children,
   className = "",
   style = {},
+  disableHover = false,
 }) {
   const cardRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e) => {
+    if (disableHover) return;
     const card = cardRef.current;
     if (!card) return;
 
@@ -22,10 +24,12 @@ export default function GlareCard({
   };
 
   const handleMouseEnter = () => {
+    if (disableHover) return;
     setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
+    if (disableHover) return;
     setIsHovered(false);
   };
 
@@ -34,9 +38,9 @@ export default function GlareCard({
       ref={cardRef}
       className={`glare-card ${isHovered ? 'glare-card--active' : ''} ${className}`}
       style={style}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={disableHover ? undefined : handleMouseMove}
+      onMouseEnter={disableHover ? undefined : handleMouseEnter}
+      onMouseLeave={disableHover ? undefined : handleMouseLeave}
     >
       <div className="glare-card-border-glow" />
       <div className="glare-card-corner-line" />

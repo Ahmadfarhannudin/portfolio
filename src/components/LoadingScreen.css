@@ -210,7 +210,7 @@
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1;
-  background: linear-gradient(180deg, #22c55e 0%, #22c55e 30%, #fde047 45%, #fde047 58%, #2563eb 72%, #2563eb 100%);
+  background: linear-gradient(180deg, #e0f2fe 0%, #67e8f9 28%, #22d3ee 52%, #38bdf8 72%, #3b82f6 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -238,7 +238,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-family: monospace;
-  background: linear-gradient(90deg, #22c55e 0%, #fde047 48%, #2563eb 100%);
+  background: linear-gradient(90deg, #67e8f9 0%, #22d3ee 42%, #3b82f6 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -257,7 +257,8 @@
 .loading-bar-fill {
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #22c55e 0%, #22c55e 30%, #fde047 48%, #fde047 58%, #2563eb 75%, #2563eb 100%);
+  background: linear-gradient(90deg, #22d3ee 0%, #38bdf8 48%, #3b82f6 100%);
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.45);
   transition: width 0.12s linear;
 }
 
@@ -283,13 +284,13 @@
   /* Solid color, tanpa gradient-clip (repaint 15x jauh lebih murah) */
   .loading-greeting {
     background: none;
-    -webkit-text-fill-color: #e2e8f0;
-    color: #e2e8f0;
+    -webkit-text-fill-color: #67e8f9;
+    color: #67e8f9;
   }
   .loading-bar-labels {
     background: none;
-    -webkit-text-fill-color: #94a3b8;
-    color: #94a3b8;
+    -webkit-text-fill-color: #22d3ee;
+    color: #22d3ee;
   }
   /* Kurangi animasi UFO di HP: matikan kedip lampu */
   .loading-ufo-light {

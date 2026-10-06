@@ -48,10 +48,11 @@ const DEFAULT_CONFIG = {
   arcEndpointGlowSpeed: 1.4,
 
   /* Fly-in saat marker diklik */
-  homeDistance: 6.1,
-  focusDistanceOffset: 1.45,
-  focusMinDistance: 1.9,
-  focusSpeed: 3.2,
+  homeDistance: 3.8,          // semula 6.1  → globe lebih besar
+  minDistance:  2.8,          // semula 4.2  → batas zoom-in lebih dekat
+  maxDistance:  6.0,          // semula 7.0  → batas zoom-out tidak perlu jauh
+  focusDistanceOffset: 1.2,   // semula 1.45
+  focusMinDistance:    1.6,   // semula 1.9
 };
 
 /* =========================================================
@@ -686,7 +687,12 @@ export function Globe3D({
         frameloop={inView ? "always" : "never"}
         style={{ width: "100%", height: "100%", display: "block" }}
         resize={{ scroll: false, debounce: 0 }}
-        camera={{ position: [0, 0, finalConfig.homeDistance], fov: 38, near: 0.1, far: 100 }}
+        camera={{
+          position: [0, 0, finalConfig.homeDistance],
+          fov: finalConfig.fov || 75,
+          near: 0.1,
+          far: 200,
+        }}
         gl={{
           antialias: true,
           alpha: true,

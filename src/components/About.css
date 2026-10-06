@@ -210,29 +210,8 @@
 ========================================================= */
 
 .about-bento .particle-container {
-  transition:
-    transform 0.35s
-      cubic-bezier(0.22, 1, 0.36, 1),
-
-    filter 0.35s ease;
-}
-
-
-.about-bento .particle-container:hover {
-  transform:
-    translateY(-4px)
-    scale(1.005);
-
-  filter:
-    drop-shadow(
-      0 15px 35px
-      rgba(0, 0, 0, 0.22)
-    )
-
-    drop-shadow(
-      0 0 20px
-      rgba(37, 99, 235, 0.06)
-    );
+  transform: none;
+  filter: none;
 }
 
 
@@ -597,17 +576,6 @@
 
   -webkit-backdrop-filter: blur(8px);
 
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.about-meta-glare:hover .about-meta-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
-
-  border-color: rgba(59, 130, 246, 0.5);
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 12px 24px rgba(59, 130, 246, 0.15);
 }
 
 
@@ -641,18 +609,6 @@
   background-clip: text;
 
   white-space: nowrap;
-
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.about-meta-glare:hover .about-meta-value {
-  background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
-
-  -webkit-background-clip: text;
-
-  -webkit-text-fill-color: transparent;
-
-  background-clip: text;
 }
 
 
@@ -1376,10 +1332,6 @@ canvas {
   }
 
 
-  .about-bento .particle-container:hover {
-    transform: none !important;
-  }
-
 }
 /* =========================================================
    ABOUT MAIN CARD — LANYARD COLOR HOVER
@@ -1493,24 +1445,7 @@ canvas {
 }
 
 
-/* ---------------------------------------------------------
-   HOVER
---------------------------------------------------------- */
 
-.about-main-card-frame:hover {
-  transform: none;
-  filter: none;
-}
-
-.about-main-card-frame:hover::before {
-  opacity: 0;
-  filter: none;
-}
-
-.about-main-card-frame:hover::after {
-  opacity: 0;
-  filter: none;
-}
 
 
 /* ---------------------------------------------------------
@@ -1550,16 +1485,9 @@ canvas {
 
   opacity: 0;
 
-  transition: opacity 0.5s ease;
-
   pointer-events: none;
 
   z-index: 0;
-}
-
-
-.about-main-card-frame:hover .about-main-card::before {
-  opacity: 1;
 }
 /* =========================================================
    ABOUT CARD — LANYARD FLAG COLOR
@@ -1603,26 +1531,9 @@ canvas {
 
   opacity: 0;
 
-  transform: scale(0.98);
-
-  transition:
-    opacity 0.45s ease,
-    transform 0.45s ease;
-
   pointer-events: none;
 
   z-index: 1;
-}
-
-
-/* ---------------------------------------------------------
-   HOVER
---------------------------------------------------------- */
-
-.about-main-card-frame:hover
-.about-main-card::after {
-  opacity: 1;
-  transform: scale(1);
 }
 
 

@@ -154,11 +154,13 @@
 
 /* Gap gallery -> wishlist: rapat, tanpa jarak kosong */
 .portfolio-wishlist-gap {
-  margin-top: 40px;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 .portfolio-wishlist-gap .wishlist-section {
-  padding-top: 40px;
+  padding-top: 20px;
+  padding-bottom: 0;
   min-height: auto;
 }
 

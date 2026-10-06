@@ -1,5 +1,9 @@
 /* =========================================================
    3D GLOBE CONTAINER
+   KUNCI: harus ada height eksplisit agar Canvas Three.js
+   tahu berapa tinggi yang harus diambil saat mount.
+   width/height: 100% saja tidak cukup — parent chain harus
+   punya nilai pixel yang solid sampai ke atas.
 ========================================================= */
 
 .globe3d-container {
@@ -8,32 +12,26 @@
   width: 100%;
   height: 100%;
 
+  /* Fallback eksplisit jika parent belum punya height */
+  min-height: 600px;
+
   min-width: 0;
-  min-height: 0;
 
-  /* TRANSPARENT */
   background: transparent !important;
-
-  /* REMOVE FRAME */
   border: none !important;
   border-radius: 0 !important;
   outline: none !important;
   box-shadow: none !important;
-
-  /*
-    Biarkan globe keluar sedikit dari container
-    tanpa membuat frame terlihat.
-  */
   overflow: visible !important;
-
   isolation: isolate;
-
   touch-action: none;
 }
 
 
 /* =========================================================
    CANVAS
+   KUNCI: Canvas harus 100% width DAN height dari container.
+   Jika container punya min-height, canvas ikut.
 ========================================================= */
 
 .globe3d-container canvas {
@@ -45,17 +43,12 @@
   min-width: 0 !important;
   min-height: 0 !important;
 
-  /* TRANSPARENT */
   background: transparent !important;
-
-  /* REMOVE FRAME */
   border: none !important;
   border-radius: 0 !important;
   outline: none !important;
   box-shadow: none !important;
-
   overflow: visible !important;
-
   touch-action: none;
 }
 
@@ -69,7 +62,6 @@
 .globe3d-container::after,
 .globe3d-container canvas {
   background-color: transparent !important;
-
   border: 0 !important;
   outline: 0 !important;
   box-shadow: none !important;
@@ -82,74 +74,36 @@
 
 .globe-loading {
   position: absolute;
-
   left: 50%;
   top: 50%;
-
   transform: translate(-50%, -50%);
-
   z-index: 20;
-
   display: flex;
   align-items: center;
-
   gap: 8px;
-
   color: rgba(255, 255, 255, 0.4);
-
   font-size: 10px;
   letter-spacing: 0.08em;
-
   white-space: nowrap;
-
   pointer-events: none;
   user-select: none;
 }
 
-
-/* =========================================================
-   LOADING DOT
-========================================================= */
-
 .globe-loading-dot {
   width: 7px;
   height: 7px;
-
   flex-shrink: 0;
-
   border-radius: 50%;
-
   background: #8dd1ff;
-
   box-shadow:
     0 0 8px rgba(100, 190, 255, 0.9),
     0 0 18px rgba(100, 190, 255, 0.5);
-
-  animation:
-    globe-loading-pulse
-    1.2s
-    ease-in-out
-    infinite;
+  animation: globe-loading-pulse 1.2s ease-in-out infinite;
 }
 
-
-/* =========================================================
-   LOADING ANIMATION
-========================================================= */
-
 @keyframes globe-loading-pulse {
-  0%,
-  100% {
-    opacity: 0.35;
-
-    transform: scale(0.8);
-  }
-
-  50% {
-    opacity: 1;
-
-    transform: scale(1.2);
-  }
+  0%, 100% { opacity: 0.35; transform: scale(0.8); }
+  50%       { opacity: 1;    transform: scale(1.2); }
 }
 
 
@@ -159,64 +113,39 @@
 
 .globe-marker-tooltip {
   display: flex;
-
   align-items: center;
-
   gap: 7px;
-
   padding: 5px 8px 5px 5px;
-
   border: 1px solid rgba(255, 255, 255, 0.14);
-
   border-radius: 999px;
-
   background: rgba(10, 15, 25, 0.85);
-
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-
   box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.3),
     0 0 20px rgba(90, 180, 255, 0.08);
-
   color: #ffffff;
-
   font-family: inherit;
-
   font-size: 9px;
-
   font-weight: 600;
-
   line-height: 1;
-
   white-space: nowrap;
-
   pointer-events: none;
-
   user-select: none;
 }
-
-
-/* =========================================================
-   MARKER TOOLTIP IMAGE
-========================================================= */
 
 .globe-marker-tooltip img {
   width: 20px;
   height: 20px;
-
   flex-shrink: 0;
-
   object-fit: cover;
-
   border-radius: 50%;
-
   border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 
 /* =========================================================
-   VIGNETTE SAAT ZOOM MASUK
+   VIGNETTE
 ========================================================= */
 
 .globe-focus-vignette {
@@ -247,17 +176,14 @@
   bottom: 16px;
   transform: translateX(-50%);
   z-index: 5;
-
   display: flex;
   align-items: center;
   gap: 14px;
-
   width: max-content;
   min-width: min(270px, calc(100% - 24px));
   max-width: calc(100% - 24px);
   padding: 10px 12px 10px 10px;
   box-sizing: border-box;
-
   border-radius: 18px;
   background: rgba(10, 18, 36, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -267,7 +193,6 @@
     0 0 28px -6px rgba(59, 130, 246, 0.5),
     0 10px 30px rgba(0, 0, 0, 0.4);
   color: #fff;
-
   animation: globeCardIn 0.55s 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -278,9 +203,6 @@
   border-radius: 12px;
   flex-shrink: 0;
 }
-
-
-/* ===== Teks ===== */
 
 .globe-focus-text {
   flex: 1 1 auto;
@@ -311,9 +233,6 @@
   text-overflow: ellipsis;
 }
 
-
-/* ===== Tombol Maps ===== */
-
 .globe-focus-maps {
   display: inline-flex;
   align-items: center;
@@ -322,31 +241,24 @@
   flex-shrink: 0;
   margin-top: 8px;
   padding: 7px 14px;
-
   border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
   line-height: 1;
-  white-space: nowrap; /* kunci: teks tidak boleh turun baris */
+  white-space: nowrap;
   text-decoration: none;
-
   color: #06121f;
   background: linear-gradient(135deg, #7fe3ff, #5bd3ff);
   box-shadow: 0 0 14px -2px rgba(91, 211, 255, 0.6);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.globe-focus-maps svg {
-  flex-shrink: 0;
-}
+.globe-focus-maps svg { flex-shrink: 0; }
 
 .globe-focus-maps:hover {
   transform: translateY(-1px);
   box-shadow: 0 0 20px 0 rgba(91, 211, 255, 0.8);
 }
-
-
-/* ===== Tombol tutup ===== */
 
 .globe-focus-close {
   flex-shrink: 0;
@@ -354,10 +266,8 @@
   width: 30px;
   height: 30px;
   padding: 0;
-
   display: grid;
   place-items: center;
-
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(255, 255, 255, 0.08);
@@ -373,38 +283,28 @@
 }
 
 @keyframes globeCardIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 16px) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0) scale(1);
-  }
+  from { opacity: 0; transform: translate(-50%, 16px) scale(0.96); }
+  to   { opacity: 1; transform: translate(-50%, 0)    scale(1);    }
 }
 
 
 /* =========================================================
-   TABLET
+   RESPONSIVE — ukuran min-height mengikuti parent context
 ========================================================= */
 
 @media (max-width: 1024px) {
   .globe3d-container {
     width: 100%;
     height: 100%;
+    min-height: 550px;
   }
 }
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
 
 @media (max-width: 600px) {
   .globe3d-container {
     width: 100%;
     height: 100%;
-
+    min-height: 340px;
     overflow: visible !important;
   }
 
@@ -412,24 +312,11 @@
     overflow: visible !important;
   }
 
-  .globe-loading {
-    font-size: 9px;
-  }
-
-  .globe-marker-tooltip {
-    font-size: 8px;
-
-    padding: 4px 7px 4px 4px;
-  }
-
-  .globe-marker-tooltip img {
-    width: 18px;
-    height: 18px;
-  }
+  .globe-loading      { font-size: 9px; }
+  .globe-marker-tooltip { font-size: 8px; padding: 4px 7px 4px 4px; }
+  .globe-marker-tooltip img { width: 18px; height: 18px; }
 }
 
-
-/* Kartu info di layar kecil */
 @media (max-width: 480px) {
   .globe-focus-card {
     bottom: 10px;
@@ -439,62 +326,19 @@
     min-width: calc(100% - 20px);
     max-width: calc(100% - 20px);
   }
-
-  .globe-focus-card img {
-    width: 56px;
-    height: 56px;
-    border-radius: 10px;
-  }
-
-  .globe-focus-text strong {
-    font-size: 14px;
-  }
-
-  .globe-focus-maps {
-    margin-top: 6px;
-    padding: 6px 12px;
-    font-size: 11px;
-  }
-
-  .globe-focus-close {
-    width: 28px;
-    height: 28px;
-  }
+  .globe-focus-card img { width: 56px; height: 56px; border-radius: 10px; }
+  .globe-focus-text strong { font-size: 14px; }
+  .globe-focus-maps { margin-top: 6px; padding: 6px 12px; font-size: 11px; }
+  .globe-focus-close { width: 28px; height: 28px; }
 }
-
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
 
 @media (max-width: 400px) {
-  .globe-marker-tooltip {
-    font-size: 7px;
-
-    padding: 3px 6px 3px 3px;
-  }
-
-  .globe-marker-tooltip img {
-    width: 16px;
-    height: 16px;
-  }
+  .globe-marker-tooltip { font-size: 7px; padding: 3px 6px 3px 3px; }
+  .globe-marker-tooltip img { width: 16px; height: 16px; }
 }
 
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
 @media (prefers-reduced-motion: reduce) {
-  .globe-loading-dot {
-    animation: none;
-  }
-
-  .globe-focus-card {
-    animation: none;
-  }
-
-  .globe-focus-vignette {
-    transition: none;
-  }
+  .globe-loading-dot  { animation: none; }
+  .globe-focus-card   { animation: none; }
+  .globe-focus-vignette { transition: none; }
 }
