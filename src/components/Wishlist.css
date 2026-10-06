@@ -407,7 +407,7 @@
    * Sedikit lebih tinggi agar globe 560px
    * punya ruang kosong atas/bawah.
    */
-  height: 680px;
+  height: 780px;
 
   min-width: 0;
 
@@ -440,11 +440,11 @@
 .wishlist-globe {
   position: relative;
 
-  width: 680px;
+  width: 780px;
 
-  height: 680px;
+  height: 780px;
 
-  flex: 0 0 680px;
+  flex: 0 0 780px;
 
   display: flex;
 
@@ -664,7 +664,7 @@
   }
 
   .wishlist-globe-area {
-    height: 620px;
+    height: 700px;
   }
 
   .wishlist-globe {
@@ -735,7 +735,7 @@
   }
 
   .wishlist-globe-area {
-    height: 590px;
+    height: 670px;
 
     margin-top: 5px;
   }
@@ -874,7 +874,7 @@
   .wishlist-globe-area {
     width: 100%;
 
-    height: 540px;
+    height: 620px;
 
     margin-top: 15px;
   }
@@ -884,11 +884,11 @@
   ------------------------------------------------------- */
 
   .wishlist-globe {
-    width: 490px;
+    width: 560px;
 
-    height: 490px;
+    height: 560px;
 
-    flex-basis: 420px;
+    flex-basis: 480px;
 
     max-width: 100%;
   }

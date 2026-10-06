@@ -48,7 +48,7 @@ const DEFAULT_CONFIG = {
   arcEndpointGlowSpeed: 1.4,
 
   /* Fly-in saat marker diklik */
-  homeDistance: 5.3,
+  homeDistance: 6.1,
   focusDistanceOffset: 1.45,
   focusMinDistance: 1.9,
   focusSpeed: 3.2,
