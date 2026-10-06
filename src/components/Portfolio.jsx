@@ -12,7 +12,20 @@ import FlexCarousel from "./FlexCarousel";
 import Folder from "./Folder";
 import Wishlist from "./Wishlist";
 
-
+import cBarudakCuanki from "../assets/portfolio/galery/circular/barudak cuanki.jpeg";
+import cBarudakEsemka from "../assets/portfolio/galery/circular/barudak esemka.jpeg";
+import cBiasaPersib from "../assets/portfolio/galery/circular/biasa si persib.jpeg";
+import cHokiJuara from "../assets/portfolio/galery/circular/hoki juara 1.jpeg";
+import cHuntingBuku from "../assets/portfolio/galery/circular/hunting buku.jpeg";
+import cKeluargaAlit from "../assets/portfolio/galery/circular/keluarga alit.jpeg";
+import cLagiNgopi from "../assets/portfolio/galery/circular/lagi ngopi.jpeg";
+import cLombaMamasakan from "../assets/portfolio/galery/circular/lomba mamasakan.jpeg";
+import cMuncak from "../assets/portfolio/galery/circular/muncak dulu.jpeg";
+import cNfe from "../assets/portfolio/galery/circular/NFE.jpeg";
+import cOxigen from "../assets/portfolio/galery/circular/oxigen dulu.jpeg";
+import cSiPersib from "../assets/portfolio/galery/circular/si persib.jpeg";
+import cSuntikanPersib from "../assets/portfolio/galery/circular/suntikan persib.jpeg";
+import cWisudaEsemka from "../assets/portfolio/galery/circular/wisuda esemka.jpeg";
 
 import mBiasa from "../assets/portfolio/galery/masonry/biasa.jpeg";
 import mBlueWhite from "../assets/portfolio/galery/masonry/blue and white.jpeg";
@@ -177,11 +190,20 @@ export default function Portfolio({
 
 
   const carouselItems = [
-    { src: mBiasa, alt: "biasa", title: "biasa" },
-    { src: mBlueWhite, alt: "blue and white", title: "blue and white" },
-    { src: mBraga1, alt: "braga 1", title: "braga 1" },
-    { src: mBraga2, alt: "braga 2", title: "braga 2" },
-    { src: mBuku, alt: "buku", title: "buku" },
+    { src: cBarudakCuanki, alt: "barudak cuanki", title: "Barudak Cuanki" },
+    { src: cBarudakEsemka, alt: "barudak esemka", title: "Barudak Esemka" },
+    { src: cBiasaPersib, alt: "biasa si persib", title: "Biasa Si Persib" },
+    { src: cHokiJuara, alt: "hoki juara 1", title: "Hoki Juara 1" },
+    { src: cHuntingBuku, alt: "hunting buku", title: "Hunting Buku" },
+    { src: cKeluargaAlit, alt: "keluarga alit", title: "Keluarga Alit" },
+    { src: cLagiNgopi, alt: "lagi ngopi", title: "Lagi Ngopi" },
+    { src: cLombaMamasakan, alt: "lomba mamasakan", title: "Lomba Mamasakan" },
+    { src: cMuncak, alt: "muncak dulu", title: "Muncak Dulu" },
+    { src: cNfe, alt: "NFE", title: "NFE" },
+    { src: cOxigen, alt: "oxigen dulu", title: "Oxigen Dulu" },
+    { src: cSiPersib, alt: "si persib", title: "Si Persib" },
+    { src: cSuntikanPersib, alt: "suntikan persib", title: "Suntikan Persib" },
+    { src: cWisudaEsemka, alt: "wisuda esemka", title: "Wisuda Esemka" },
   ];
 
   /* =======================================================
